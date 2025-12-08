@@ -9,22 +9,20 @@ namespace HotelProgramma.Data
     /// </summary>
     public class DAL
     {
-        // Connection string naar de SQL Server database
-        // Data Source = naam van de SQL server instance.
-        // Initial Catalog = naam van de database.
-        // Integrated Security = gebruikt Windows-authenticatie.
-        // Trust Server Certificate = accepteert het servercertificaat zonder extra validatie.
-        // Staat op private readonly om te preventeren dat de variabele _connectionString herschreven wordt.
-        private readonly string _connectionString =
-            "Data Source=VIVOBOOK\\SQLEXPRESS;Initial Catalog=marconnes_db;Integrated Security=True;Trust Server Certificate=True";
+        private readonly string _connectionString;
+        
+        public DAL()
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
+                .Build();
+        
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
 
-        /// <summary>
-        ///  Haalt alle hotelkamers uit de database op.
-        ///  Retourneert een lijst van Room objecten met kamernummer, prijs en beschikbaarheid.
-        /// </summary>
         public List<Room> GetAllRooms()
         {
-            // Maakt een lege lijst aan waar alle kamers in verzameld worden.
             var rooms = new List<Room>();
 
             // Maakt een nieuwe SQL connectie aan met de opgegeven connection string uit de _connectionString variabele.
@@ -60,6 +58,7 @@ namespace HotelProgramma.Data
                             IsAvailable = reader.GetBoolean(2)
                         };
 
+                        Console.WriteLine(room);
                         // Voegt de ingevulde kamer toe aan de lijst
                         rooms.Add(room);
                     }

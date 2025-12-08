@@ -14,6 +14,8 @@ namespace HotelProgramma
             // 'args' zijn de commandline-argumenten waarmee de app gestart wordt.
             var builder = WebApplication.CreateBuilder(args);
 
+            Console.WriteLine(builder);
+
             // AVoegt MVC-ondersteuning toe (Controllers + Views).
             // Zonder dit kan je geen controllers en razor-views gebruiken.
             builder.Services.AddControllersWithViews();
