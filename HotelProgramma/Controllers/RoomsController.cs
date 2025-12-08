@@ -37,7 +37,7 @@ namespace HotelProgramma.Controllers
 
             // Vraagt via de DAL alle kamers op uit de database.
             // 'rooms' is hier een List<Room>.
-            var rooms = _dal.GetAllRooms();
+            var rooms = _dal.QueryExample();
 
             // Geeft de 'Rooms' lijst mee aan de view.
             // De view ontvangt dit als het model (bijvoorbeeld @model List<Room>).

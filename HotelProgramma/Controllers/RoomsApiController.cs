@@ -22,7 +22,7 @@ namespace HotelProgramma.Controllers
         [HttpGet]
         public ActionResult<List<Room>> Get()
         {
-            var rooms = _dal.GetAllRooms();
+            var rooms = _dal.HotelRoomGetAll();
             return Ok(rooms); // Swagger ziet dit als een GET-operatie.
         }
     }

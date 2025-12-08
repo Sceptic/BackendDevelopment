@@ -62,9 +62,9 @@ namespace HotelProgramma.Data
         //}
 
 
-        public void CreateQuery()
+        public List<Room> QueryExample()
         {
-            var rooms = SqlGetPipeline<Room>(
+            return SqlGetPipeline<Room>(
                 "SELECT room_number, hotelroom_price, is_available FROM HOTELROOM WHERE is_available = @avail",
                 cmd =>
                 {
@@ -100,8 +100,5 @@ namespace HotelProgramma.Data
             }
             return results;
         }
-
-
-
     }
 }
