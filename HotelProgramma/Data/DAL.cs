@@ -50,18 +50,6 @@ namespace HotelProgramma.Data
             return rooms;
         }
 
-        //public List<T> SqlRetrieve<T>(string sql, Action<SqlCommand> bindParams, Func<SqlDataReader, T> map)
-
-        //{
-
-        //}
-
-        //public void GetAllHotelRoomsOnBoolAvailability(bool availabilityFilter)
-        //{
-        //    CreateQuery("SELECT room_number, hotelroom_price, is_available FROM HOTELROOM WHERE is_available = @avail");
-        //}
-
-
         public List<Room> QueryExample()
         {
             return SqlGetPipeline<Room>(
