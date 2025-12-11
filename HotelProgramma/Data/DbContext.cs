@@ -11,15 +11,15 @@ namespace HotelProgramma.Data
 {
     internal class DbMarconnes : DbContext
     {
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Gite> Gites { get; set; }
-        public DbSet<HotelRoom> HotelRooms { get; set; }
-        public DbSet<HotelRoomBed> HotelRoomBeds { get; set; }
-        public DbSet<HotelRoomAmenities> HotelRoomAmenities { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<ReservationClient> ReservationClients { get; set; }
-        public DbSet<ReservationGite> ReservationGites { get; set; }
-        public DbSet<ReservationHotel> ReservationHotels { get; set; }
+        public DbSet<Account> tblAccount { get; set; }
+        public DbSet<Gite> tblGite { get; set; }
+        public DbSet<HotelRoom> tblHotelRoom { get; set; }
+        public DbSet<HotelRoomBed> tblHotelRoomBed { get; set; }
+        public DbSet<HotelRoomAmenities> tblHotelRoomAmenity { get; set; }
+        public DbSet<Reservation> tblReservation { get; set; }
+        public DbSet<ReservationClient> tblReservationClient { get; set; }
+        public DbSet<ReservationGite> tblReservationGite { get; set; }
+        public DbSet<ReservationHotel> tblReservationHotel { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

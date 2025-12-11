@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelProgramma.Migrations
 {
     [DbContext(typeof(DbMarconnes))]
-    [Migration("20251211000929_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251211194333_Migration1")]
+    partial class Migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasKey("AccountId");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("tblAccount");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.Gite", b =>
@@ -46,7 +46,10 @@ namespace HotelProgramma.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GiteNumber"));
 
-                    b.Property<int>("Capacity")
+                    b.Property<int>("CapacityMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CapacityMin")
                         .HasColumnType("int");
 
                     b.Property<string>("GiteAddress")
@@ -54,15 +57,15 @@ namespace HotelProgramma.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("GitePrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("GitePrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.HasKey("GiteNumber");
 
-                    b.ToTable("Gites");
+                    b.ToTable("tblGite");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.HotelRoom", b =>
@@ -73,15 +76,21 @@ namespace HotelProgramma.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomNumber"));
 
-                    b.Property<int>("HotelroomPrice")
+                    b.Property<int>("CapacityMax")
                         .HasColumnType("int");
+
+                    b.Property<int>("CapacityMin")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("HotelroomPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.HasKey("RoomNumber");
 
-                    b.ToTable("HotelRooms");
+                    b.ToTable("tblHotelRoom");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.HotelRoomAmenities", b =>
@@ -139,7 +148,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasKey("RoomNumber");
 
-                    b.ToTable("HotelRoomAmenities");
+                    b.ToTable("tblHotelRoomAmenity");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.HotelRoomBed", b =>
@@ -162,7 +171,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasKey("RoomNumber");
 
-                    b.ToTable("HotelRoomBeds");
+                    b.ToTable("tblHotelRoomBed");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.Reservation", b =>
@@ -197,7 +206,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("tblReservation");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.ReservationClient", b =>
@@ -216,7 +225,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasKey("ReservationId", "Firstname", "Lastname");
 
-                    b.ToTable("ReservationClients");
+                    b.ToTable("tblReservationClient");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.ReservationGite", b =>
@@ -234,7 +243,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasIndex("GiteNumber");
 
-                    b.ToTable("ReservationGites");
+                    b.ToTable("tblReservationGite");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.ReservationHotel", b =>
@@ -252,7 +261,7 @@ namespace HotelProgramma.Migrations
 
                     b.HasIndex("RoomNumber");
 
-                    b.ToTable("ReservationHotels");
+                    b.ToTable("tblReservationHotel");
                 });
 
             modelBuilder.Entity("HotelProgramma.Models.HotelRoomAmenities", b =>

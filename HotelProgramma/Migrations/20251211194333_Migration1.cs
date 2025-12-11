@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HotelProgramma.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
+                name: "tblAccount",
                 columns: table => new
                 {
                     AccountId = table.Column<int>(type: "int", nullable: false)
@@ -20,41 +20,44 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounts", x => x.AccountId);
+                    table.PrimaryKey("PK_tblAccount", x => x.AccountId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Gites",
+                name: "tblGite",
                 columns: table => new
                 {
                     GiteNumber = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GitePrice = table.Column<int>(type: "int", nullable: false),
+                    GitePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     GiteAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false)
+                    CapacityMin = table.Column<int>(type: "int", nullable: false),
+                    CapacityMax = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Gites", x => x.GiteNumber);
+                    table.PrimaryKey("PK_tblGite", x => x.GiteNumber);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelRooms",
+                name: "tblHotelRoom",
                 columns: table => new
                 {
                     RoomNumber = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HotelroomPrice = table.Column<int>(type: "int", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false)
+                    HotelroomPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    CapacityMin = table.Column<int>(type: "int", nullable: false),
+                    CapacityMax = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelRooms", x => x.RoomNumber);
+                    table.PrimaryKey("PK_tblHotelRoom", x => x.RoomNumber);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reservations",
+                name: "tblReservation",
                 columns: table => new
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false)
@@ -68,17 +71,17 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reservations", x => x.ReservationId);
+                    table.PrimaryKey("PK_tblReservation", x => x.ReservationId);
                     table.ForeignKey(
-                        name: "FK_Reservations_Accounts_AccountId",
+                        name: "FK_tblReservation_tblAccount_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "Accounts",
+                        principalTable: "tblAccount",
                         principalColumn: "AccountId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelRoomAmenities",
+                name: "tblHotelRoomAmenity",
                 columns: table => new
                 {
                     RoomNumber = table.Column<int>(type: "int", nullable: false),
@@ -101,17 +104,17 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelRoomAmenities", x => x.RoomNumber);
+                    table.PrimaryKey("PK_tblHotelRoomAmenity", x => x.RoomNumber);
                     table.ForeignKey(
-                        name: "FK_HotelRoomAmenities_HotelRooms_RoomNumber",
+                        name: "FK_tblHotelRoomAmenity_tblHotelRoom_RoomNumber",
                         column: x => x.RoomNumber,
-                        principalTable: "HotelRooms",
+                        principalTable: "tblHotelRoom",
                         principalColumn: "RoomNumber",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelRoomBeds",
+                name: "tblHotelRoomBed",
                 columns: table => new
                 {
                     RoomNumber = table.Column<int>(type: "int", nullable: false),
@@ -122,17 +125,17 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelRoomBeds", x => x.RoomNumber);
+                    table.PrimaryKey("PK_tblHotelRoomBed", x => x.RoomNumber);
                     table.ForeignKey(
-                        name: "FK_HotelRoomBeds_HotelRooms_RoomNumber",
+                        name: "FK_tblHotelRoomBed_tblHotelRoom_RoomNumber",
                         column: x => x.RoomNumber,
-                        principalTable: "HotelRooms",
+                        principalTable: "tblHotelRoom",
                         principalColumn: "RoomNumber",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReservationClients",
+                name: "tblReservationClient",
                 columns: table => new
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false),
@@ -142,17 +145,17 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReservationClients", x => new { x.ReservationId, x.Firstname, x.Lastname });
+                    table.PrimaryKey("PK_tblReservationClient", x => new { x.ReservationId, x.Firstname, x.Lastname });
                     table.ForeignKey(
-                        name: "FK_ReservationClients_Reservations_ReservationId",
+                        name: "FK_tblReservationClient_tblReservation_ReservationId",
                         column: x => x.ReservationId,
-                        principalTable: "Reservations",
+                        principalTable: "tblReservation",
                         principalColumn: "ReservationId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReservationGites",
+                name: "tblReservationGite",
                 columns: table => new
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false),
@@ -161,23 +164,23 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReservationGites", x => new { x.ReservationId, x.GiteNumber });
+                    table.PrimaryKey("PK_tblReservationGite", x => new { x.ReservationId, x.GiteNumber });
                     table.ForeignKey(
-                        name: "FK_ReservationGites_Gites_GiteNumber",
+                        name: "FK_tblReservationGite_tblGite_GiteNumber",
                         column: x => x.GiteNumber,
-                        principalTable: "Gites",
+                        principalTable: "tblGite",
                         principalColumn: "GiteNumber",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReservationGites_Reservations_ReservationId",
+                        name: "FK_tblReservationGite_tblReservation_ReservationId",
                         column: x => x.ReservationId,
-                        principalTable: "Reservations",
+                        principalTable: "tblReservation",
                         principalColumn: "ReservationId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReservationHotels",
+                name: "tblReservationHotel",
                 columns: table => new
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false),
@@ -186,66 +189,66 @@ namespace HotelProgramma.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReservationHotels", x => new { x.ReservationId, x.RoomNumber });
+                    table.PrimaryKey("PK_tblReservationHotel", x => new { x.ReservationId, x.RoomNumber });
                     table.ForeignKey(
-                        name: "FK_ReservationHotels_HotelRooms_RoomNumber",
+                        name: "FK_tblReservationHotel_tblHotelRoom_RoomNumber",
                         column: x => x.RoomNumber,
-                        principalTable: "HotelRooms",
+                        principalTable: "tblHotelRoom",
                         principalColumn: "RoomNumber",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReservationHotels_Reservations_ReservationId",
+                        name: "FK_tblReservationHotel_tblReservation_ReservationId",
                         column: x => x.ReservationId,
-                        principalTable: "Reservations",
+                        principalTable: "tblReservation",
                         principalColumn: "ReservationId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationGites_GiteNumber",
-                table: "ReservationGites",
+                name: "IX_tblReservation_AccountId",
+                table: "tblReservation",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tblReservationGite_GiteNumber",
+                table: "tblReservationGite",
                 column: "GiteNumber");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationHotels_RoomNumber",
-                table: "ReservationHotels",
+                name: "IX_tblReservationHotel_RoomNumber",
+                table: "tblReservationHotel",
                 column: "RoomNumber");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reservations_AccountId",
-                table: "Reservations",
-                column: "AccountId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HotelRoomAmenities");
+                name: "tblHotelRoomAmenity");
 
             migrationBuilder.DropTable(
-                name: "HotelRoomBeds");
+                name: "tblHotelRoomBed");
 
             migrationBuilder.DropTable(
-                name: "ReservationClients");
+                name: "tblReservationClient");
 
             migrationBuilder.DropTable(
-                name: "ReservationGites");
+                name: "tblReservationGite");
 
             migrationBuilder.DropTable(
-                name: "ReservationHotels");
+                name: "tblReservationHotel");
 
             migrationBuilder.DropTable(
-                name: "Gites");
+                name: "tblGite");
 
             migrationBuilder.DropTable(
-                name: "HotelRooms");
+                name: "tblHotelRoom");
 
             migrationBuilder.DropTable(
-                name: "Reservations");
+                name: "tblReservation");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "tblAccount");
         }
     }
 }
