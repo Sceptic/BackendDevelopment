@@ -7,7 +7,6 @@ namespace HotelProgramma.Models
     public class Reservation
     {
         public int ReservationId { get; set; }
-
         public int AccountId { get; set; }
         public Account Account { get; set; }
 
@@ -18,8 +17,8 @@ namespace HotelProgramma.Models
         public DateTime ReservationStart { get; set; }
         public DateTime ReservationEnd { get; set; }
 
-        public ICollection<ReservationClient> Clients { get; set; }
-        public ICollection<ReservationGite> Gites { get; set; }
-        public ICollection<ReservationHotel> Hotels { get; set; }
+        public ICollection<ReservationClient> ReservationClient { get; set; }
+        public ICollection<ReservationGite> ReservationGite { get; set; }
+        public ICollection<ReservationHotel> ReservationHotel { get; set; }
     }
 }

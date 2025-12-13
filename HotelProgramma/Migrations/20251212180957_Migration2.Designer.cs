@@ -4,6 +4,7 @@ using HotelProgramma.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelProgramma.Migrations
 {
     [DbContext(typeof(DbMarconnes))]
-    partial class DbMarconnesModelSnapshot : ModelSnapshot
+    [Migration("20251212180957_Migration2")]
+    partial class Migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -310,7 +313,7 @@ namespace HotelProgramma.Migrations
                     b.HasOne("HotelProgramma.Models.Gite", "Gite")
                         .WithMany("ReservationGites")
                         .HasForeignKey("GiteNumber")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HotelProgramma.Models.Reservation", "Reservation")
@@ -335,7 +338,7 @@ namespace HotelProgramma.Migrations
                     b.HasOne("HotelProgramma.Models.HotelRoom", "Room")
                         .WithMany("ReservationHotels")
                         .HasForeignKey("RoomNumber")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Reservation");

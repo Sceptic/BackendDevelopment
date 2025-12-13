@@ -1,11 +1,5 @@
 ﻿using HotelProgramma.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Text;
 
 namespace HotelProgramma.Data
 {
@@ -21,7 +15,6 @@ namespace HotelProgramma.Data
         public DbSet<ReservationGite> tblReservationGite { get; set; }
         public DbSet<ReservationHotel> tblReservationHotel { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
@@ -36,9 +29,13 @@ namespace HotelProgramma.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // ===== ===== USER TABLES ===== =====
+
             // ACCOUNT
             modelBuilder.Entity<Account>()
                 .HasKey(x => x.AccountId);
+
+            // ===== ===== SERVICES TABLES ===== =====
 
             // GITE
             modelBuilder.Entity<Gite>()
@@ -60,7 +57,8 @@ namespace HotelProgramma.Data
             modelBuilder.Entity<HotelRoomBed>()
                 .HasOne(x => x.Room)
                 .WithOne(x => x.Bed)
-                .HasForeignKey<HotelRoomBed>(x => x.RoomNumber);
+                .HasForeignKey<HotelRoomBed>(x => x.RoomNumber)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // HOTELROOMAMENITIES
             modelBuilder.Entity<HotelRoomAmenities>()
@@ -69,7 +67,10 @@ namespace HotelProgramma.Data
             modelBuilder.Entity<HotelRoomAmenities>()
                 .HasOne(x => x.Room)
                 .WithOne(x => x.Amenities)
-                .HasForeignKey<HotelRoomAmenities>(x => x.RoomNumber);
+                .HasForeignKey<HotelRoomAmenities>(x => x.RoomNumber)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // ===== ===== RESERVATION TABLES ===== =====
 
             // RESERVATION
             modelBuilder.Entity<Reservation>()
@@ -86,8 +87,9 @@ namespace HotelProgramma.Data
 
             modelBuilder.Entity<ReservationClient>()
                 .HasOne(x => x.Reservation)
-                .WithMany(x => x.Clients)
-                .HasForeignKey(x => x.ReservationId);
+                .WithMany(x => x.ReservationClient)
+                .HasForeignKey(x => x.ReservationId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // RESERVATIONGITE
             modelBuilder.Entity<ReservationGite>()
@@ -95,13 +97,14 @@ namespace HotelProgramma.Data
 
             modelBuilder.Entity<ReservationGite>()
                 .HasOne(x => x.Reservation)
-                .WithMany(x => x.Gites)
+                .WithMany(x => x.ReservationGite)
                 .HasForeignKey(x => x.ReservationId);
 
             modelBuilder.Entity<ReservationGite>()
                 .HasOne(x => x.Gite)
                 .WithMany(x => x.ReservationGites)
-                .HasForeignKey(x => x.GiteNumber);
+                .HasForeignKey(x => x.GiteNumber)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // RESERVATIONHOTEL
             modelBuilder.Entity<ReservationHotel>()
@@ -109,13 +112,14 @@ namespace HotelProgramma.Data
 
             modelBuilder.Entity<ReservationHotel>()
                 .HasOne(x => x.Reservation)
-                .WithMany(x => x.Hotels)
+                .WithMany(x => x.ReservationHotel)
                 .HasForeignKey(x => x.ReservationId);
 
             modelBuilder.Entity<ReservationHotel>()
                 .HasOne(x => x.Room)
                 .WithMany(x => x.ReservationHotels)
-                .HasForeignKey(x => x.RoomNumber);
+                .HasForeignKey(x => x.RoomNumber)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
