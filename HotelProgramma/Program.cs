@@ -62,7 +62,7 @@ namespace HotelProgramma
             // Maakt statische bestanden (css, js, images) beschikbaar via de webserver.
             // // In nieuwe templates wordt dit via MapStaticAssets / WithStaticAssets gedaan.
             app.MapStaticAssets();
-
+          
             // Standaard route-configuratie:
             // URL patroon: /{controller}/{action}/{id?}
             // - controller: standaard "Home"
@@ -72,6 +72,8 @@ namespace HotelProgramma
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets(); // combineert route met statische assets-handling.
+
+            var ConsoleApp = new ConsoleApplicationTestingInterface();
 
             // Start de webapplicatie en gaat luisteren naar inkomende HTTP-verzoeken.
             app.Run();
