@@ -14,8 +14,6 @@ namespace HotelProgramma.Application
             _db = db;
         }
 
-        //Read
-
         public Reservation Get(int id)
         {
             return _db.tblReservation

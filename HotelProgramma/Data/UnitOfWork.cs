@@ -1,9 +1,10 @@
-﻿using HotelProgramma.Data;
+﻿using HotelProgramma.Application;
+using HotelProgramma.Data;
 using HotelProgramma.Data.Repositories;
 
 namespace HotelProgramma.Data
 {
-    internal sealed class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
         private readonly DbMarconnes _db;
 
@@ -12,9 +13,9 @@ namespace HotelProgramma.Data
         public IGiteRepo Gites { get; }
         public IHotelroomRepo Hotels { get; }
 
-        public UnitOfWork()
+        public UnitOfWork(DbMarconnes db)
         {
-            _db = new DbMarconnes();
+            _db = db;
 
             Accounts = new UserRepo(_db);
             Reservations = new ReservationRepo(_db);

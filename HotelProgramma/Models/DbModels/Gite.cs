@@ -13,6 +13,8 @@ namespace HotelProgramma.Models
         public int? CapacityMin { get; set; }
         public int? CapacityMax { get; set; }
 
+        //This property doesn't serve a purpose, delete it and migrate the db again,
+        //can't personally be bothered to do that rn.
         public ICollection<ReservationGite> ReservationGites { get; set; }
     }
 }

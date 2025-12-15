@@ -14,6 +14,9 @@ namespace HotelProgramma.Models
 
         public HotelRoomBed Bed { get; set; }
         public HotelRoomAmenities Amenities { get; set; }
+
+        //This property doesn't serve a purpose, delete it and migrate the db again,
+        //can't personally be bothered to do that rn.
         public ICollection<ReservationHotel> ReservationHotels { get; set; }
     }
 }

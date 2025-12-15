@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelProgramma.Data
 {
-    internal class DbMarconnes : DbContext
+    public class DbMarconnes : DbContext
     {
         public DbSet<Account> tblAccount { get; set; }
         public DbSet<Gite> tblGite { get; set; }

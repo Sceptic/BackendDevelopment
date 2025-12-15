@@ -28,7 +28,8 @@ namespace HotelProgramma
             // AddScoped betekent:
             // - Voor elke HTTP-request wordt precies één DAL-instantie gemaakt.
             // - Diezelfde instantie wordt binnen die request gedeeld.
-            builder.Services.AddScoped<DAL>();
+            builder.Services.AddScoped<DbMarconnes>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Bouwt de WebApplication op basis van de configuratie en geregistreerde services.
             var app = builder.Build();

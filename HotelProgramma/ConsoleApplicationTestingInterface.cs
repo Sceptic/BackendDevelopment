@@ -5,10 +5,8 @@ public class ConsoleApplicationTestingInterface
 {
     public ConsoleApplicationTestingInterface()
     {
-        using IUnitOfWork uow = new UnitOfWork();
+        //using IUnitOfWork uow = new UnitOfWork();
 
-        uow.Reservations.Add(
-
-        uow.Complete();
+        //uow.Complete();
     }
 }

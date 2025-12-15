@@ -53,7 +53,7 @@ namespace HotelProgramma.Data
         public List<Room> QueryExample()
         {
             return SqlGetPipeline<Room>(
-                "SELECT room_number, hotelroom_price, is_available FROM HOTELROOM WHERE is_available = @avail",
+                "SELECT room_number, hotelroom_price, is_available FROM tblHotelRoom WHERE is_available = @avail",
                 cmd =>
                 {
                     cmd.Parameters.AddWithValue("@avail", true);
