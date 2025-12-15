@@ -1,5 +1,6 @@
 ﻿using HotelProgramma.Models;
 using Microsoft.EntityFrameworkCore;
+using HotelProgramma.Data;
 
 namespace HotelProgramma.Data.Repositories
 {
@@ -17,6 +18,8 @@ namespace HotelProgramma.Data.Repositories
             return _db.tblGite
                 .FirstOrDefault(x => x.GiteNumber == giteNumber);
         }
+
+        // ===== ===== Write Methods, ensure EF-core tracks changes here.
 
         public void Post(Gite gite)
         {

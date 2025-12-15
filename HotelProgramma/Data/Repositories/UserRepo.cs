@@ -1,8 +1,9 @@
 ﻿using HotelProgramma.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using HotelProgramma.Data;
 
-namespace HotelProgramma.Data.Repositories
+namespace HotelProgramma.Application
 {
     internal class UserRepo : IUserRepo
     {
@@ -18,6 +19,8 @@ namespace HotelProgramma.Data.Repositories
             return _db.tblAccount
                 .FirstOrDefault(x => x.AccountId == id);
         }
+
+        // ===== ===== Write Methods, ensure EF-core tracks changes here.
 
         public void Post(Account account)
         {

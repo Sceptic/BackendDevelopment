@@ -1,5 +1,6 @@
 ﻿using HotelProgramma.Models;
 using Microsoft.EntityFrameworkCore;
+using HotelProgramma.Data;
 
 namespace HotelProgramma.Data.Repositories
 {
@@ -19,6 +20,8 @@ namespace HotelProgramma.Data.Repositories
                 .Include(x => x.Amenities)
                 .FirstOrDefault(x => x.RoomNumber == id);
         }
+
+        // ===== ===== Write Methods, ensure EF-core tracks changes here.
 
         public void Post(HotelRoom hotelroom)
         {
