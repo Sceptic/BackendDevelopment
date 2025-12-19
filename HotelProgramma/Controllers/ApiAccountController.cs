@@ -2,6 +2,9 @@
 using HotelProgramma.Models;
 using Microsoft.AspNetCore.Mvc;
 
+//Beschrijft de API die externe applicaties gebruiken om met deze applicatie te communiceren. Een API maakt een UOW (Unit of work) aan om data op te halen en schrijft deze naar een Dto,
+//die dan omgezet wordt naar een .json bestand die opgestuurd wordt via de API.
+
 namespace HotelProgramma.Controllers
 {
     [ApiController]

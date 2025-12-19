@@ -1,6 +1,8 @@
 ﻿using HotelProgramma.Models;
 using Microsoft.EntityFrameworkCore;
 
+//Beschrijft de configuratie van de ORM (is in een bepaalde zin DÉ ORM binnen dit project), hierin staan alle tabellen en relaties beschreven die de ORM gaat beheren/enforcen
+
 namespace HotelProgramma.Data
 {
     public class DbMarconnes : DbContext

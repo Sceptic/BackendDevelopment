@@ -20,6 +20,7 @@ namespace HotelProgramma.Controllers
         {
             var room = _uow.Hotels.Get(roomNumber);
 
+            //Een hotelkamer moet ook een bedconfiguratie en amenities hebben, als deze missen wordt hier een error gegooid.
             if (room == null)
                 return NotFound();
 

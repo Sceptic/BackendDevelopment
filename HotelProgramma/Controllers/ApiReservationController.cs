@@ -35,7 +35,10 @@ namespace HotelProgramma.Controllers
                 ReservationStart = reservation.ReservationStart,
                 ReservationEnd = reservation.ReservationEnd,
 
-
+                //Hier worden een-op-meer relaties gevuld, een reservatie kan meerdere klanten, hotels of gites bevatten. De LINQ-select query gaat door elke subentiteit, waarbij de output daarvan door middel van
+                //.ToList() geschreven wordt naar een C# lijst. Eventueel zijn de vraagtekens opgevallen, deze werken samen met elkaar, de eerste vraagteken (null-conditional operator) kijkt of de reservatie
+                //überhaupt één instantie van de subentiteit heeft. Als er bijvoorbeeld een reservatie is met geen een gite dan detecteerd deze eerste vraagteken dit.
+                //Die springt dan regelrecht naar de twee vraagtekens (null-coalescing operator) en maakt een lege lijst aan van de subentiteit, zonder de Select statement te runnen.
                 Clients = reservation.ReservationClient?
                     .Select(c => new ReservationClientDto
                     {

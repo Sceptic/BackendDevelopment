@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using HotelProgramma.Data;
 
+//Repositories voegen entiteiten en hun subentiteiten bijelkaar en halen deze systematisch op via de ORM. LINQ-querries worden aan de ORM gegeven, de ORM vertaald deze naar SQL-querries en haalt de bijbehorende data op.
+//Een paar methodes worden gedefinieerd in elke repo om systematisch op te halen, te posten, deleten, updaten, etc. De input en output worden gevuld met de DbContext modellen die relaties beschrijven.
+
 namespace HotelProgramma.Data.Repositories
 {
     internal class GiteRepo : IGiteRepo
