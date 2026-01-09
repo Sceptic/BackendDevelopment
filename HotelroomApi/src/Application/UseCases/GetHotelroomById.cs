@@ -12,16 +12,6 @@ public sealed class GetHotelroomByIdQuery
         _repository = repository;
     }
 
-    public async Task<Hotelroom?> ExecuteAsync(int roomId)
-    {
-        var room = await _repository.GetByIdAsync(roomId);
-
-        if (room is null)
-            return null;
-
-        if (room.IsAvailable == false)
-            return null;
-
-        return room;
-    }
+    public Task<Hotelroom?> ExecuteAsync(int roomId)
+        => _repository.GetByIdAsync(roomId);
 }
