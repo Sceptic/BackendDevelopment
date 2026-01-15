@@ -6,9 +6,28 @@ namespace Domain.Models
     {
         private GiteAmenities() { }
 
-        public GiteAmenities(int giteId)
+        internal GiteAmenities(
+            bool? wifi, bool? bath, bool? shower, bool? hairDryer, bool? smallChild,
+            bool? toiletries, bool? desk, bool? chair, bool? balcony, bool? sofa,
+            bool? sofaBed, bool? miniFridge, bool? kettle, bool? cuttlery,
+            bool? eatingArea, bool? roomService)
         {
-            GiteId = giteId;
+            Wifi = wifi;
+            Bath = bath;
+            Shower = shower;
+            HairDryer = hairDryer;
+            SmallChild = smallChild;
+            Toiletries = toiletries;
+            Desk = desk;
+            Chair = chair;
+            Balcony = balcony;
+            Sofa = sofa;
+            SofaBed = sofaBed;
+            MiniFridge = miniFridge;
+            Kettle = kettle;
+            Cuttlery = cuttlery;
+            EatingArea = eatingArea;
+            RoomService = roomService;
         }
 
         public void SetWifi(bool? value) => Wifi = value;

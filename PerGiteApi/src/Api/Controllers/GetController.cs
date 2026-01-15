@@ -2,7 +2,7 @@ using Application.Gites.ReadQueries;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("gite")]
+[Route("gite/get/")]
 public class GetGiteController : ControllerBase
 {
     private readonly GiteReadingService _readingService;

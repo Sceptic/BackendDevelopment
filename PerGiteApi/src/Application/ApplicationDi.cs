@@ -1,4 +1,5 @@
-﻿using Application.Gites.ReadQueries;
+﻿using Application.Abstractions;
+using Application.Gites.ReadQueries;
 using Application.Gites.WriteQueries;
 using Microsoft.Extensions.DependencyInjection;
 

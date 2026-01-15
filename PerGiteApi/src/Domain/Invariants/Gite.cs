@@ -1,10 +1,51 @@
-﻿using static Domain.Helpers.Helpers;
+﻿using Domain.Specs;
+using static Domain.Helpers.Helpers;
 
 namespace Domain.Models
 {
     public partial class Gite
     {
         private Gite() { }
+
+        public static Gite Create(
+            int giteNumber,
+            decimal gitePrice,
+            bool isAvailable,
+            string giteAddress,
+            int capacityMin,
+            int capacityMax,
+            GiteAmenitiesSpec amenities,
+            IEnumerable<GiteBedSpec> beds)
+        {
+            ValidateNumber(giteNumber);
+            ValidatePrice(gitePrice);
+            ValidateAddress(giteAddress);
+            ValidateCapacity(capacityMin, capacityMax);
+
+            var gite = new Gite
+            {
+                GiteNumber = giteNumber,
+                GitePrice = gitePrice,
+                IsAvailable = isAvailable,
+                GiteAddress = giteAddress,
+                CapacityMin = capacityMin,
+                CapacityMax = capacityMax,
+            };
+
+            gite.Amenities = new GiteAmenities(
+                amenities.Wifi, amenities.Bath, amenities.Shower, amenities.HairDryer, amenities.SmallChild,
+                amenities.Toiletries, amenities.Desk, amenities.Chair, amenities.Balcony, amenities.Sofa,
+                amenities.SofaBed, amenities.MiniFridge, amenities.Kettle, amenities.Cuttlery,
+                amenities.EatingArea, amenities.RoomService);
+
+            var bedList = beds?.ToList() ?? throw new ArgumentNullException(nameof(beds));
+            Require(bedList.Count > 0, "At least one bed is required.");
+
+            foreach (var b in bedList)
+                gite.Beds.Add(new GiteBed(b.Amount1PrBed, b.Amount2PrBed, b.Amount3PrBed, b.BedSort));
+
+            return gite;
+        }
 
         //Invariants/checks die alleen bestaan om regels te valideren, doen op zich niks anders.
         private static void ValidateCapacity(int min, int max)
@@ -32,22 +73,6 @@ namespace Domain.Models
             Require(address.Length <= 100, "GiteAddress must be <= 100 characters.");
         }
 
-        // Constructor gebruikt de eerder gedefinieerde checks om ervoor te zorgen dat het object correct geïntialiseerd wordt.
-        public Gite(int giteNumber, decimal gitePrice, bool isAvailable, string giteAddress, int capacityMin, int capacityMax)
-        {
-            ValidateNumber(giteNumber);
-            ValidatePrice(gitePrice);
-            ValidateAddress(giteAddress);
-            ValidateCapacity(capacityMin, capacityMax);
-
-            GiteNumber = giteNumber;
-            GitePrice = gitePrice;
-            IsAvailable = isAvailable;
-            GiteAddress = giteAddress;
-            CapacityMin = capacityMin;
-            CapacityMax = capacityMax;
-        }
-
         //Mutators, worden gebruikt om waardes te veranderen, nadat zij eerder al zijn geïnitialiseerd, enforcen ook regels.
         public void ChangePrice(decimal newPrice)
         {
@@ -73,24 +98,51 @@ namespace Domain.Models
         public void MarkAvailable() => IsAvailable = true;
         public void MarkUnavailable() => IsAvailable = false;
 
-        public void SetAmenities(GiteAmenities amenities)
+        public void SetAmenitiesFromSpec(GiteAmenitiesSpec spec)
         {
-            Require(amenities != null, "Amenities must not be null."); // Een gite MOET altijd amenities hebben.
-            Require(amenities.GiteId == 0 || amenities.GiteId == GiteId, "Amenities must belong to this Gite.");
-            Amenities = amenities;
+            Require(spec != null, "Amenities spec must not be null.");
+
+            Amenities = new GiteAmenities(
+                spec.Wifi,
+                spec.Bath,
+                spec.Shower,
+                spec.HairDryer,
+                spec.SmallChild,
+                spec.Toiletries,
+                spec.Desk,
+                spec.Chair,
+                spec.Balcony,
+                spec.Sofa,
+                spec.SofaBed,
+                spec.MiniFridge,
+                spec.Kettle,
+                spec.Cuttlery,
+                spec.EatingArea,
+                spec.RoomService);
         }
 
-        public void AddBed(GiteBed bed)
+        public void AddBed(int a1, int a2, int a3, string sort)
         {
-            Require(bed != null, "Bed must not be null.");
-            Require(bed.GiteId == 0 || bed.GiteId == GiteId, "Bed must belong to this Gite.");
+            var bed = new GiteBed(a1, a2, a3, sort);
             Beds.Add(bed);
         }
 
         public void RemoveBed(GiteBed bed)
         {
             Require(bed != null, "Bed must not be null.");
+            Require(Beds.Count > 1, "A gite must have at least one bed.");
             Beds.Remove(bed);
+        }
+
+        public void ReplaceBeds(IEnumerable<GiteBedSpec> beds)
+        {
+            var bedList = beds?.ToList() ?? throw new ArgumentNullException(nameof(beds));
+            Require(bedList.Count > 0, "At least one bed is required.");
+
+            Beds.Clear();
+
+            foreach (var b in bedList)
+                Beds.Add(new GiteBed(b.Amount1PrBed, b.Amount2PrBed, b.Amount3PrBed, b.BedSort));
         }
     }
 }

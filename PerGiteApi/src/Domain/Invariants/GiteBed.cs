@@ -4,12 +4,17 @@ namespace Domain.Models
 {
     public partial class GiteBed
     {
-
         private GiteBed() { }
 
-        private static void Require(bool condition, string message)
+        internal GiteBed(int a1, int a2, int a3, string sort)
         {
-            if (!condition) throw new ArgumentException(message);
+            ValidateAmounts(a1, a2, a3);
+            ValidateSort(sort);
+
+            Amount1PrBed = a1;
+            Amount2PrBed = a2;
+            Amount3PrBed = a3;
+            BedSort = sort;
         }
 
         private static void ValidateAmounts(int a1, int a2, int a3)
@@ -22,19 +27,6 @@ namespace Domain.Models
         private static void ValidateSort(string sort)
         {
             Require(!string.IsNullOrWhiteSpace(sort), "BedSort must be provided.");
-        }
-
-        public GiteBed(int giteId, int amount1PrBed, int amount2PrBed, int amount3PrBed, string bedSort)
-        {
-            Require(giteId > 0, "GiteId must be > 0.");
-            ValidateAmounts(amount1PrBed, amount2PrBed, amount3PrBed);
-            ValidateSort(bedSort);
-
-            GiteId = giteId;
-            Amount1PrBed = amount1PrBed;
-            Amount2PrBed = amount2PrBed;
-            Amount3PrBed = amount3PrBed;
-            BedSort = bedSort;
         }
 
         public void ChangeAmounts(int amount1PrBed, int amount2PrBed, int amount3PrBed)
