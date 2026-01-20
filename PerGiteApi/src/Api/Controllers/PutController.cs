@@ -1,4 +1,4 @@
-﻿using Api.DtoModels;
+﻿using Application.DtoModels;
 using Application.Gites.WriteQueries;
 using Microsoft.AspNetCore.Mvc;
 

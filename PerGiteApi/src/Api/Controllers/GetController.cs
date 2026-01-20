@@ -1,29 +1,33 @@
 using Application.Gites.ReadQueries;
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("gite/get/")]
-public class GetGiteController : ControllerBase
+namespace Api.Controllers
 {
-    private readonly GiteReadingService _readingService;
-
-    public GetGiteController(GiteReadingService giteService)
+    [ApiController]
+    [Route("gite/get/")]
+    public class GetGiteController : ControllerBase
     {
-        _readingService = giteService;
-    }
+        private readonly GiteReadingService _readingService;
 
-    [HttpGet("all")]
-    public async Task<IActionResult> GetAll(CancellationToken ct)
-    {
-        var gites = await _readingService.GetAllAsync(ct);
-        return Ok(gites);
-    }
+        public GetGiteController(GiteReadingService giteService)
+        {
+            _readingService = giteService;
+        }
 
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetById(int id, CancellationToken ct)
-    {
-        var gite = await _readingService.GetByIdAsync(id, ct);
-        if (gite is null) return NotFound();
-        return Ok(gite);
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll(CancellationToken ct)
+        {
+            var gites = await _readingService.GetAllAsync(ct);
+            return Ok(gites);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id, CancellationToken ct)
+        {
+            var gite = await _readingService.GetByIdAsync(id, ct);
+            if (gite is null) return NotFound();
+            return Ok(gite);
+        }
     }
 }
+

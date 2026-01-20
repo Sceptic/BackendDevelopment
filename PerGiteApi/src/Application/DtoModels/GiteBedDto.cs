@@ -1,4 +1,4 @@
-﻿namespace Api.DtoModels
+﻿namespace Application.DtoModels
 {
     public sealed record GiteBedDto
     {

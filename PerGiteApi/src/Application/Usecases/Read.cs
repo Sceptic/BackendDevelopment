@@ -1,26 +1,26 @@
 ﻿using Application.Abstractions;
 using Domain.Models;
-using System.Threading;
 
-namespace Application.Gites.ReadQueries;
-
-public sealed class GiteReadingService
+namespace Application.Gites.ReadQueries
 {
-    private readonly IGiteRepository _repo;
-
-    public GiteReadingService(IGiteRepository repo)
+    public sealed class GiteReadingService
     {
-        _repo = repo;
-    }
+        private readonly IGiteRepository _repo;
 
-    public async Task<Gite?> GetByIdAsync(int giteId, CancellationToken ct)
-    {
-        return await _repo.GetByIdAsync(giteId, ct);
-        
-    }
+        public GiteReadingService(IGiteRepository repo)
+        {
+            _repo = repo;
+        }
 
-    public async Task<IReadOnlyList<Gite>> GetAllAsync(CancellationToken ct)
-    {
-        return await _repo.GetAllAsync(ct);
+        public async Task<Gite?> GetByIdAsync(int giteId, CancellationToken ct)
+        {
+            return await _repo.GetByIdAsync(giteId, ct);
+
+        }
+
+        public async Task<IReadOnlyList<Gite>> GetAllAsync(CancellationToken ct)
+        {
+            return await _repo.GetAllAsync(ct);
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Application.Abstractions;
-
-public interface IUnitOfWork
+﻿namespace Application.Abstractions
 {
-    Task<int> SaveChangesAsync(CancellationToken ct = default);
+    public interface IUnitOfWork
+    {
+        Task<int> SaveChangesAsync(CancellationToken ct = default);
+    }
 }
+

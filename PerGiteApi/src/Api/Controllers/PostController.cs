@@ -1,22 +1,26 @@
-using Api.DtoModels;
+using Application.DtoModels;
 using Application.Gites.WriteQueries;
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("gite/post")]
-public sealed class PostGiteController : ControllerBase
+namespace Api.Controllers
 {
-    private readonly GiteWritingService _writer;
-
-    public PostGiteController(GiteWritingService writer)
+    [ApiController]
+    [Route("gite/post")]
+    public sealed class PostGiteController : ControllerBase
     {
-        _writer = writer;
-    }
+        private readonly GiteWritingService _writer;
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] GiteDto dto, CancellationToken ct)
-    {
-        var id = await _writer.CreateAsync(dto, ct);
-        return Created($"/gite/get/{id}", null);
+        public PostGiteController(GiteWritingService writer)
+        {
+            _writer = writer;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] GiteDto dto, CancellationToken ct)
+        {
+            var id = await _writer.CreateAsync(dto, ct);
+            return Created($"/gite/get/{id}", null);
+        }
     }
 }
+
