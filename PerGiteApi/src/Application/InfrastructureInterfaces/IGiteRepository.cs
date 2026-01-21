@@ -10,8 +10,8 @@ namespace Application.Abstractions
 
         //Write Methods
         Task AddAsync(Gite gite, CancellationToken ct = default);
-        Task UpdateAsync(Gite gite, CancellationToken ct = default);
-        Task DeleteAsync(Gite gite, CancellationToken ct = default);
+        void Update(Gite gite);
+        void Delete(Gite gite);
     }
 }
 

@@ -34,15 +34,13 @@ public sealed class GiteRepository : IGiteRepository
         await _db.Gites.AddAsync(gite, ct);
     }
 
-    public Task UpdateAsync(Gite gite, CancellationToken ct = default)
+    public void Update(Gite gite)
     {
         _db.Gites.Update(gite);
-        return Task.CompletedTask;
     }
 
-    public Task DeleteAsync(Gite gite, CancellationToken ct = default)
+    public void Delete(Gite gite)
     {
         _db.Gites.Remove(gite);
-        return Task.CompletedTask;
     }
 }

@@ -54,7 +54,7 @@ namespace Application.Gites.WriteQueries
             gite.SetAmenitiesFromSpec(ToAmenitiesSpec(dto.Amenities));
             gite.ReplaceBeds(ToBedSpecs(dto.Beds));
 
-            await _repo.UpdateAsync(gite, ct);
+            _repo.Update(gite);
             await _uow.SaveChangesAsync(ct);
         }
 
@@ -63,7 +63,7 @@ namespace Application.Gites.WriteQueries
             var gite = await _repo.GetByIdAsync(id, ct)
                 ?? throw new InvalidOperationException("Gite not found");
 
-            await _repo.DeleteAsync(gite, ct);
+            _repo.Delete(gite);
             await _uow.SaveChangesAsync(ct);
         }
 
