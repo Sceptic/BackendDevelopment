@@ -29,7 +29,6 @@ namespace Infrastructure
             });
 
             services.AddScoped<IGiteRepository, GiteRepository>();
-            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
             return services;
         }
