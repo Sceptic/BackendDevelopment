@@ -1,0 +1,621 @@
+﻿<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Booking Platform</title>
+    <style>
+        :root {
+            --bg: #f5f6f8;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --line: #e5e7eb;
+            --blue: #0b5cff;
+            --blue2: #0a4de0;
+            --green: #0a7a2f;
+            --red: #b00020;
+            --shadow: 0 6px 18px rgba(15,23,42,.08);
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 18px 16px 36px;
+        }
+
+        /* top search bar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--bg);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(229,231,235,.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .search {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: end;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .field {
+            min-width: 140px;
+            flex: 1 1 160px;
+        }
+
+            .field.small {
+                flex: 0 1 120px;
+                min-width: 120px;
+            }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0 0 6px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 10px;
+            font-size: 14px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            outline: none;
+            background: #fff;
+        }
+
+            input:focus, select:focus {
+                border-color: rgba(11,92,255,.55);
+                box-shadow: 0 0 0 3px rgba(11,92,255,.12);
+            }
+
+        .btn {
+            padding: 11px 14px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background: var(--blue2);
+            }
+
+            .btn-primary:disabled {
+                opacity: .5;
+                cursor: not-allowed;
+            }
+
+        .btn-ghost {
+            background: #fff;
+            border-color: var(--line);
+            color: var(--text);
+        }
+
+        .metaRow {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .status {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .toast {
+            display: none;
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: var(--shadow);
+            font-size: 14px;
+        }
+
+        .error {
+            color: var(--red);
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-size: 13px;
+        }
+
+        /* list cards */
+        .list {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card {
+            display: flex;
+            gap: 14px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .imgWrap {
+            width: 290px;
+            min-width: 290px;
+            height: 190px;
+            position: relative;
+            background: #e9eef7;
+        }
+
+            .imgWrap img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+        .badge {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background: rgba(15,23,42,.86);
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+
+        .content {
+            flex: 1 1 auto;
+            padding: 14px 14px 14px 0;
+            display: flex;
+            gap: 12px;
+        }
+
+        .main {
+            flex: 1 1 auto;
+            min-width: 240px;
+            padding-left: 0;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 6px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            margin: 0 0 10px;
+        }
+
+        .chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 0 0 10px;
+        }
+
+        .chip {
+            font-size: 12px;
+            padding: 4px 8px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--text);
+            background: #fff;
+        }
+
+            .chip.ok {
+                border-color: rgba(10,122,47,.28);
+                background: rgba(10,122,47,.08);
+                color: var(--green);
+            }
+
+            .chip.no {
+                border-color: rgba(176,0,32,.18);
+                background: rgba(176,0,32,.06);
+                color: var(--red);
+            }
+
+        .side {
+            width: 230px;
+            min-width: 230px;
+            padding: 14px 14px 14px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-left: 1px solid var(--line);
+            padding-left: 14px;
+        }
+
+        .price {
+            text-align: right;
+        }
+
+            .price .amt {
+                font-size: 22px;
+                font-weight: 800;
+                letter-spacing: -.2px;
+            }
+
+            .price .per {
+                font-size: 12px;
+                color: var(--muted);
+                margin-top: 2px;
+            }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 980px) {
+            .imgWrap {
+                width: 240px;
+                min-width: 240px;
+                height: 170px;
+            }
+
+            .side {
+                width: 200px;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .card {
+                flex-direction: column;
+            }
+
+            .imgWrap {
+                width: 100%;
+                min-width: 100%;
+                height: 210px;
+            }
+
+            .content {
+                padding: 12px;
+            }
+
+            .side {
+                width: 100%;
+                min-width: 100%;
+                border-left: none;
+                border-top: 1px solid var(--line);
+                padding: 12px 0 0;
+                align-items: flex-start;
+            }
+
+            .price {
+                text-align: left;
+            }
+
+            .actions {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="wrap">
+            <div class="search">
+                <div class="field small">
+                    <label for="source">Source</label>
+                    <select id="source">
+                        <option value="">All</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Gite">Gite</option>
+                        <option value="Camping">Camping</option>
+                    </select>
+                </div>
+
+                <div class="field small">
+                    <label for="start">Start</label>
+                    <input id="start" type="date" />
+                </div>
+
+                <div class="field small">
+                    <label for="end">End</label>
+                    <input id="end" type="date" />
+                </div>
+
+                <div class="field small">
+                    <label for="guests">Guests</label>
+                    <input id="guests" type="number" min="1" placeholder="2" />
+                </div>
+
+                <div class="field small">
+                    <label for="capMin">CapMin</label>
+                    <input id="capMin" type="number" min="0" placeholder="-" />
+                </div>
+
+                <div class="field small">
+                    <label for="capMax">CapMax</label>
+                    <input id="capMax" type="number" min="0" placeholder="-" />
+                </div>
+
+                <div class="field small">
+                    <label>&nbsp;</label>
+                    <button id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+
+            <div class="metaRow">
+                <div id="status" class="status"></div>
+                <div id="toast" class="toast"></div>
+            </div>
+            <div id="error" class="error"></div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div id="list" class="list"></div>
+    </div>
+
+    <script>
+        const $ = (id) => document.getElementById(id);
+
+        function isoDate(d) {
+            const pad = (n) => String(n).padStart(2, "0");
+            return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+        }
+
+        function escapeHtml(s) {
+            return String(s ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function normalizeSource(s) {
+            if (typeof s === "number") return ["Hotel", "Gite", "Camping"][s] ?? "Unknown";
+            const v = String(s ?? "").trim();
+            if (!v) return "Unknown";
+            const lower = v.toLowerCase();
+            if (lower === "hotel") return "Hotel";
+            if (lower === "gite") return "Gite";
+            if (lower === "camping") return "Camping";
+            return v;
+        }
+
+        function imageForSource(sourceStr) {
+            switch (sourceStr) {
+                case "Hotel": return "/images/hotel.webp";
+                case "Gite": return "/images/gite.webp";
+                case "Camping": return "/images/camping.webp";
+                default: return "";
+            }
+        }
+
+        function inferType(item, sourceStr) {
+            const t = String(item.type ?? "").trim();
+            if (t) return t;
+            if (sourceStr === "Hotel") return "Hotel room";
+            if (sourceStr === "Gite") return "Gîte";
+            if (sourceStr === "Camping") return "Camping pitch";
+            return "Accommodation";
+        }
+
+        function generatedName(item, sourceStr) {
+            const raw = String(item.name ?? "").trim();
+            if (raw && raw.toLowerCase() !== "null") return raw;
+
+            const id = String(item.accommodationId ?? "").trim() || "?";
+            const capMin = Number(item.capacityMin ?? 0);
+            const capMax = Number(item.capacityMax ?? 0);
+
+            if (sourceStr === "Hotel") {
+                const cap = capMax ? `${capMax}p` : (capMin ? `${capMin}p` : "");
+                return `Room ${id}${cap ? " · " + cap : ""}`;
+            }
+            if (sourceStr === "Gite") {
+                const cap = capMax ? `${capMax} guests` : (capMin ? `${capMin}+ guests` : "");
+                return `Gîte ${id}${cap ? " · " + cap : ""}`;
+            }
+            if (sourceStr === "Camping") {
+                const cap = capMax ? `${capMax} guests` : (capMin ? `${capMin}+ guests` : "");
+                return `Pitch ${id}${cap ? " · " + cap : ""}`;
+            }
+            return `Accommodation ${id}`;
+        }
+
+        function money(n) {
+            if (typeof n === "number") return n.toFixed(2);
+            const s = String(n ?? "").trim();
+            return s || "0.00";
+        }
+
+        function showToast(msg, ok) {
+            const t = $("toast");
+            t.style.display = "";
+            t.textContent = msg;
+            t.style.borderColor = ok ? "rgba(10,122,47,.28)" : "rgba(176,0,32,.25)";
+            t.style.color = ok ? "#0a7a2f" : "#b00020";
+            window.clearTimeout(showToast._t);
+            showToast._t = window.setTimeout(() => { t.style.display = "none"; }, 3500);
+        }
+
+        // defaults
+        const now = new Date();
+        $("start").value = isoDate(now);
+        $("end").value = isoDate(new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000));
+
+        async function fetchAvailability() {
+            $("error").textContent = "";
+            $("status").textContent = "Loading...";
+            $("list").innerHTML = "";
+
+            const start = $("start").value;
+            const endv = $("end").value;
+            const source = $("source").value;
+            const guests = $("guests").value;
+            const capMin = $("capMin").value;
+            const capMax = $("capMax").value;
+
+            const params = new URLSearchParams();
+            params.set("start", start);
+            params.set("end", endv);
+            if (source) params.set("source", source);
+            if (guests) params.set("guests", guests);
+            if (capMin) params.set("capacityMin", capMin);
+            if (capMax) params.set("capacityMax", capMax);
+
+            const url = `/api/availability?${params.toString()}`;
+
+            try {
+                const res = await fetch(url, { headers: { "Accept": "application/json" } });
+                if (!res.ok) throw new Error(`${res.status} ${res.statusText}\n${await res.text()}`);
+
+                const data = await res.json();
+                const items = Array.isArray(data) ? data : (data.items ?? []);
+                $("status").textContent = `${items.length} results`;
+
+                const guestsForBooking = Number($("guests").value || 1);
+                const startVal = $("start").value;
+                const endVal = $("end").value;
+
+                const html = items.map(i => {
+                    const sourceStr = normalizeSource(i.source);
+                    const typeStr = inferType(i, sourceStr);
+                    const nameStr = generatedName(i, sourceStr);
+
+                    const img = imageForSource(sourceStr);
+                    const imgHtml = img ? `<img src="${img}" alt="${escapeHtml(sourceStr)}">` : "";
+
+                    const cap = `${i.capacityMin} - ${i.capacityMax}`;
+                    const avail = !!i.available;
+
+                    const currency = String(i.currency ?? "EUR");
+                    const price = money(i.pricePerNight);
+
+                    const disabledAttr = avail ? "" : "disabled";
+                    const availChip = avail
+                        ? `<span class="chip ok">Available</span>`
+                        : `<span class="chip no">Unavailable</span>`;
+
+                    return `
+              <div class="card">
+                <div class="imgWrap">
+                  ${imgHtml}
+                  <div class="badge">${escapeHtml(sourceStr)}</div>
+                </div>
+
+                <div class="content">
+                  <div class="main">
+                    <h3 class="title">${escapeHtml(nameStr)}</h3>
+                    <div class="subtitle">${escapeHtml(typeStr)} · ID #${escapeHtml(i.accommodationId)} · Capacity ${escapeHtml(cap)}</div>
+
+                    <div class="chips">
+                      ${availChip}
+                      <span class="chip">${escapeHtml(currency)}</span>
+                    </div>
+
+                    <div class="subtitle">
+                      Data komt live uit de bron; boekingen worden opgeslagen in reservation_db.
+                    </div>
+                  </div>
+
+                  <div class="side">
+                    <div class="price">
+                      <div class="amt">${escapeHtml(currency)} ${escapeHtml(price)}</div>
+                      <div class="per">per night</div>
+                    </div>
+
+                    <div class="actions">
+                      <button class="btn btn-primary" ${disabledAttr}
+                        onclick="bookNow('${escapeHtml(sourceStr)}','${escapeHtml(i.accommodationId)}',${guestsForBooking},'${startVal}','${endVal}')">
+                        Book now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+                }).join("");
+
+                $("list").innerHTML = html || `<div class="status">No results.</div>`;
+            } catch (e) {
+                $("status").textContent = "";
+                $("error").textContent = String(e);
+            }
+        }
+
+        window.bookNow = async function (source, accommodationId, guests, start, end) {
+            $("error").textContent = "";
+
+            const payload = {
+                source: source,
+                accommodationId: accommodationId,
+                accountId: 1001,
+                start: new Date(start + "T00:00:00").toISOString(),
+                end: new Date(end + "T00:00:00").toISOString(),
+                guests: guests,
+                notes: "Booked via GUI",
+                idempotencyKey: (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now())
+            };
+
+            try {
+                const res = await fetch("/api/reservations", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.status === 409) {
+                    showToast("Conflict: already reserved in this period", false);
+                    $("error").textContent = await res.text();
+                    return;
+                }
+
+                if (!res.ok) throw new Error(`${res.status} ${res.statusText}\n${await res.text()}`);
+
+                const created = await res.json();
+                showToast(`Booked. ReservationId: ${created.platformReservationId}`, true);
+                await fetchAvailability();
+            } catch (e) {
+                showToast("Booking failed", false);
+                $("error").textContent = String(e);
+            }
+        };
+
+        $("btnSearch").addEventListener("click", fetchAvailability);
+        fetchAvailability();
+    </script>
+</body>
+</html>

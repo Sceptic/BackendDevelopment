@@ -9,8 +9,7 @@ public sealed partial class Hotelroom
     public int? CapacityMin { get; private set; }
     public int? CapacityMax { get; private set; }
 
-    private readonly List<HotelroomBed> _beds = new();
-    public IReadOnlyCollection<HotelroomBed> Beds => _beds.AsReadOnly();
+    public List<HotelroomBed> Beds { get; private set; } = new();
 
     public HotelroomAmenities? Amenities { get; private set; }
 

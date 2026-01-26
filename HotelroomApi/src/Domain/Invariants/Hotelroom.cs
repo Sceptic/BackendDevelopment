@@ -34,6 +34,6 @@ public sealed partial class Hotelroom
 
     public void AddBed(HotelroomBed bed)
     {
-        _beds.Add(bed);
+        Beds.Add(bed);
     }
 }

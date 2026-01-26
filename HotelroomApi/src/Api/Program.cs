@@ -19,7 +19,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    Console.WriteLine("hi");
+    Console.WriteLine("DevelopmentMode");
 }
 
 app.MapControllers();

@@ -40,10 +40,4 @@ public sealed partial class HotelroomBed
         bed.Room = room;
         return bed;
     }
-
-    public void AttachTo(Hotelroom room)
-    {
-        Room = room;
-        RoomId = room.RoomId;
-    }
 }

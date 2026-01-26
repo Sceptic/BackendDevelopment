@@ -8,7 +8,7 @@ internal partial class HotelroomRepository : IHotelroomRepository
 {
     private readonly string _connectionString;
 
-    public HotelroomRepository(string connectionString)
+    internal HotelroomRepository(string connectionString)
     {
         _connectionString = connectionString;
     }
