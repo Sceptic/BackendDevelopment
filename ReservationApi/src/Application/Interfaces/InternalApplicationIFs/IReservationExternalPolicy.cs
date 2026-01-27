@@ -1,5 +1,4 @@
-﻿// Application/Abstractions/Reservations/IReservationExternalPolicy.cs
-using Domain.Models;
+﻿using Domain.Models;
 
 namespace Application.Abstractions.Reservations;
 

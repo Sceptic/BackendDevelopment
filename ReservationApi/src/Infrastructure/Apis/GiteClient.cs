@@ -33,7 +33,6 @@ public sealed class GiteClient : IGiteReadClient
     }
 
 
-    // Vendor response shape stays private in Infrastructure
     private sealed class GiteApiResponse
     {
         [JsonPropertyName("giteId")]
@@ -50,8 +49,5 @@ public sealed class GiteClient : IGiteReadClient
 
         [JsonPropertyName("capacityMax")]
         public int CapacityMax { get; init; }
-
-        // Present in JSON but ignored unless you add properties:
-        // giteNumber, giteAddress, amenities, beds...
     }
 }

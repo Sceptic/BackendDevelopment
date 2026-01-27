@@ -10,18 +10,15 @@ public sealed partial class ReservationCommandService
         var existing = await _repo.GetByIdTrackedAsync(request.ReservationId, cancellationToken);
         if (existing is null) return null;
 
-        // Scalars
         if (request.AccountId.HasValue)
             existing.AccountId = request.AccountId.Value;
 
-        // Statuses: apply only if provided (individually)
         if (request.ReservationStatus is not null)
             existing.ReservationStatus = request.ReservationStatus;
 
         if (request.PaymentStatus is not null)
             existing.PaymentStatus = request.PaymentStatus;
 
-        // Pricing: apply only what is provided
         if (request.ReservationPrice.HasValue)
             existing.ReservationPrice = request.ReservationPrice.Value;
 
@@ -31,8 +28,7 @@ public sealed partial class ReservationCommandService
         if (request.TouristTarif.HasValue)
             existing.TouristTarif = request.TouristTarif.Value;
 
-        // Period: need both values to safely call SetPeriod.
-        // If only one is provided, merge with existing.
+        // Both start and end dates are handled concurrently as mutating one of either indepdendently is unsafe.
         if (request.ReservationStart.HasValue || request.ReservationEnd.HasValue)
         {
             var start = request.ReservationStart ?? existing.ReservationStart;
@@ -40,7 +36,6 @@ public sealed partial class ReservationCommandService
             existing.SetPeriod(start, end);
         }
 
-        // Collections: only replace if provided (non-null)
         if (request.Clients is not null)
         {
             existing.Clients = request.Clients.Select(c => new ReservationClient

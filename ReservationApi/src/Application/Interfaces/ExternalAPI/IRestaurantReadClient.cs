@@ -9,5 +9,5 @@ public sealed record RestaurantRequest(int TableId);
 
 public sealed record RestaurantSnapshot(
     int TableId,
-    decimal Capacity);
+    int ?Capacity);
 

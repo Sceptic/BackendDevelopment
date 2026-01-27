@@ -31,7 +31,7 @@ public sealed record PatchReservationCampingDto(int CampingId, decimal CampingDi
 public sealed record PatchReservationFacilityDto(string Facility, decimal FacilityDiscount);
 public sealed record PatchVehicleDto(string RegistrationPlate);
 public sealed record PatchReservationRestaurantDto(
-    int ReservationRestaurantId, // keep as identifier for patching existing; use 0 for "add new" if you want
+    int ReservationRestaurantId, // keep as 0 when updating or creating, value is automatically determined by database at persistance
     int TableId,
     DateTime TableReservationStart,
     DateTime TableReservationEnd,

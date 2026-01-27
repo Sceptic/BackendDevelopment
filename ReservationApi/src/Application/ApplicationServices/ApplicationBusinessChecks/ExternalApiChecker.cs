@@ -1,5 +1,4 @@
-﻿// Application/Reservations/ReservationExternalPolicy.cs
-using Application.Abstractions;
+﻿using Application.Abstractions;
 using Application.Abstractions.Reservations;
 using Domain.ErrorHandling;
 using Domain.Models;
@@ -32,8 +31,7 @@ public sealed class ReservationExternalPolicy : IReservationExternalPolicy
         //Determine the amount of people registered in the reservation
         var people = reservation.Clients?.Count ?? 0;
 
-        // ---- 1) EXISTENCE + AVAILABILITY + CAPACITY DATA FETCH ----
-        // Fetch in parallel per type
+        //Retrieves information from the external APIs as to given accommodation: exists, what its availability is and its capacity
         var giteTasks = reservation.Gites
             .Select(async x => (id: x.GiteId, snapshot: await SafeGetGiteAsync(x.GiteId, errors, ct)))
             .ToArray();
@@ -55,11 +53,11 @@ public sealed class ReservationExternalPolicy : IReservationExternalPolicy
         _ = await Task.WhenAll(campingTasks);
         var tables = await Task.WhenAll(tableTasks);
 
-        // If existence calls failed, stop early
+        //Checks if the accommodation even exists
         if (errors.Count > 0)
             throw new DomainValidationException("Validation failed", errors);
 
-        // ---- 2) AVAILABILITY CHECKS ----
+        //Checks if it is available
         foreach (var g in gites)
         {
             if (!g.snapshot.IsAvailable)
@@ -72,9 +70,8 @@ public sealed class ReservationExternalPolicy : IReservationExternalPolicy
                 Add(errors, "hotelrooms", $"Hotelroom {r.id} is not available.");
         }
 
-        // ---- 3) CAPACITY CHECKS ----
-        // Interpreting your requirement as: total people must fit into total selected accommodation capacity.
-        // (If you want a different distribution model, this is the piece that changes.)
+        //Checks if the given amount of people in the reservation can fit into the reserved accommodation,
+        //furthermore reservations which have less than one person or don't have any reservations also get failed here.
         var totalMin = gites.Sum(x => x.snapshot.CapacityMin) + rooms.Sum(x => x.snapshot.CapacityMin);
         var totalMax = gites.Sum(x => x.snapshot.CapacityMax) + rooms.Sum(x => x.snapshot.CapacityMax);
 
@@ -87,23 +84,18 @@ public sealed class ReservationExternalPolicy : IReservationExternalPolicy
         if (people > 0 && totalMax > 0 && people > totalMax)
             Add(errors, "capacity", $"Reservation has {people} people but accommodation capacity max is {totalMax}.");
 
-        //if (people > 0 && totalMin > 0 && people < totalMin)
-            //Add(errors, "capacity", $"Reservation has {people} people but accommodation capacity min is {totalMin}.");
-
-        // Restaurant table capacity (snapshot.Capacity is decimal)
         foreach (var t in tables)
         {
-            if (people > (int)Math.Floor(t.snapshot.Capacity))
+            if (people > t.snapshot.Capacity)
                 Add(errors, "restaurants", $"Table {t.id} capacity is {t.snapshot.Capacity} but reservation has {people} people.");
         }
 
-        // ---- 4) PRICE RECOMPUTATION ----
-        // Rule you stated: sum prices from all except camping.
-        // Restaurant snapshot has no price, so only gite + hotelroom prices are included here.
-        // If you want to include restaurant bill, add reservation.Restaurants.Sum(x => x.TableBill) explicitly.
+        //Computes the total price of the reservation, excluding the camping as the casegroup of LeftoverGPTeam did not properly 
+        //provide a price in their GET-method, as such it could not be implemented in the summation
         var computedAccommodationPrice =
             gites.Sum(x => x.snapshot.GitePrice) +
-            rooms.Sum(x => x.snapshot.HotelroomPrice);
+            rooms.Sum(x => x.snapshot.HotelroomPrice) +
+            reservation.Restaurants.Sum(x => x.TableBill);
 
         reservation.ReservationPrice = computedAccommodationPrice;
 
@@ -111,6 +103,7 @@ public sealed class ReservationExternalPolicy : IReservationExternalPolicy
             throw new DomainValidationException("Validation failed", errors);
     }
 
+    //Following methods access the external APIs via interface ports facing the infrastructure
     private async Task<GiteSnapshot> SafeGetGiteAsync(int giteId, Dictionary<string, string[]> errors, CancellationToken ct)
     {
         try
@@ -159,7 +152,7 @@ public sealed class ReservationExternalPolicy : IReservationExternalPolicy
         catch (Exception)
         {
             Add(errors, "restaurants", $"Restaurant table {tableId} does not exist or could not be retrieved.");
-            return new RestaurantSnapshot(tableId, 0m);
+            return new RestaurantSnapshot(tableId, null);
         }
     }
 
