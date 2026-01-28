@@ -1,0 +1,40 @@
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>dotnet clean
+
+Build succeeded in 1,5s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>dotnet test
+Restore complete (1,1s)
+  Domain net10.0 succeeded with 2 warning(s) (3,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\bin\Debug\net10.0\Domain.dll
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(106,17): warning CS8602: Dereference of a possibly null reference.
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(134,25): warning CS8604: Possible null reference argument for parameter 'item' in 'bool ICollection<GiteBed>.Remove(GiteBed item)'.
+  Domain net10.0 succeeded (3,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Domain\bin\Debug\net10.0\Domain.dll
+  Domain net10.0 succeeded (2,9s) → C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Domain\bin\Debug\net10.0\Domain.dll
+  Application net10.0 succeeded (0,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Application\bin\Debug\net10.0\Application.dll
+  Application net10.0 succeeded (0,5s) → C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Application\bin\Debug\net10.0\Application.dll
+  Application net10.0 succeeded (1,7s) → C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Application\bin\Debug\net10.0\Application.dll
+  GiteApi.Core.Tests net10.0 succeeded (1,1s) → GiteApi.Core.Tests\bin\Debug\net10.0\GiteApi.Core.Tests.dll
+  HotelroomApi.Core.Tests net10.0 succeeded (1,3s) → HotelroomApi.Core.Tests\bin\Debug\net10.0\HotelroomApi.Core.Tests.dll
+  ReservationApi.Core.Tests net10.0 succeeded (1,0s) → ReservationApi.Core.Tests\bin\Debug\net10.0\ReservationApi.Core.Tests.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.67]   Discovering: HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.73]   Discovered:  HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.77]   Starting:    HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.76]   Discovering: GiteApi.Core.Tests
+[xUnit.net 00:00:00.82]   Discovered:  GiteApi.Core.Tests
+[xUnit.net 00:00:00.86]   Starting:    GiteApi.Core.Tests
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:01.08]   Finished:    HotelroomApi.Core.Tests
+[xUnit.net 00:00:01.21]   Finished:    GiteApi.Core.Tests
+  HotelroomApi.Core.Tests test net10.0 succeeded (2,7s)
+  GiteApi.Core.Tests test net10.0 succeeded (2,8s)
+[xUnit.net 00:00:00.74]   Discovering: ReservationApi.Core.Tests
+[xUnit.net 00:00:00.79]   Discovered:  ReservationApi.Core.Tests
+[xUnit.net 00:00:00.83]   Starting:    ReservationApi.Core.Tests
+[xUnit.net 00:00:01.12]   Finished:    ReservationApi.Core.Tests
+  ReservationApi.Core.Tests test net10.0 succeeded (2,7s)
+
+Test summary: total: 25, failed: 0, succeeded: 25, skipped: 0, duration: 3,2s
+Build succeeded with 2 warning(s) in 9,4s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>

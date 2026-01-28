@@ -1,0 +1,18 @@
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingIntegrationFullSystem>dotnet clean
+
+Build succeeded in 0,8s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingIntegrationFullSystem>dotnet test
+Restore complete (0,8s)
+  IntegrationTestingFullSystem net10.0 succeeded (1,0s) → bin\Debug\net10.0\IntegrationTestingFullSystem.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.52]   Discovering: IntegrationTestingFullSystem
+[xUnit.net 00:00:00.58]   Discovered:  IntegrationTestingFullSystem
+[xUnit.net 00:00:00.61]   Starting:    IntegrationTestingFullSystem
+[xUnit.net 00:00:07.51]   Finished:    IntegrationTestingFullSystem
+  IntegrationTestingFullSystem test net10.0 succeeded (8,9s)
+
+Test summary: total: 3, failed: 0, succeeded: 3, skipped: 0, duration: 7,7s
+Build succeeded in 9,9s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingIntegrationFullSystem>

@@ -1,0 +1,340 @@
+C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi>dotnet clean
+
+Build succeeded in 1,3s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi>cd ..
+
+C:\Users\B\Documents\GitHub\backenddevelopment>cd TestingUnit
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>dotnet clean
+
+Build succeeded in 1,5s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>dotnet test
+Restore complete (1,1s)
+  Domain net10.0 succeeded with 2 warning(s) (3,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\bin\Debug\net10.0\Domain.dll
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(106,17): warning CS8602: Dereference of a possibly null reference.
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(134,25): warning CS8604: Possible null reference argument for parameter 'item' in 'bool ICollection<GiteBed>.Remove(GiteBed item)'.
+  Domain net10.0 succeeded (3,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Domain\bin\Debug\net10.0\Domain.dll
+  Domain net10.0 succeeded (2,9s) → C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Domain\bin\Debug\net10.0\Domain.dll
+  Application net10.0 succeeded (0,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Application\bin\Debug\net10.0\Application.dll
+  Application net10.0 succeeded (0,5s) → C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Application\bin\Debug\net10.0\Application.dll
+  Application net10.0 succeeded (1,7s) → C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Application\bin\Debug\net10.0\Application.dll
+  GiteApi.Core.Tests net10.0 succeeded (1,1s) → GiteApi.Core.Tests\bin\Debug\net10.0\GiteApi.Core.Tests.dll
+  HotelroomApi.Core.Tests net10.0 succeeded (1,3s) → HotelroomApi.Core.Tests\bin\Debug\net10.0\HotelroomApi.Core.Tests.dll
+  ReservationApi.Core.Tests net10.0 succeeded (1,0s) → ReservationApi.Core.Tests\bin\Debug\net10.0\ReservationApi.Core.Tests.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.67]   Discovering: HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.73]   Discovered:  HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.77]   Starting:    HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.76]   Discovering: GiteApi.Core.Tests
+[xUnit.net 00:00:00.82]   Discovered:  GiteApi.Core.Tests
+[xUnit.net 00:00:00.86]   Starting:    GiteApi.Core.Tests
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:01.08]   Finished:    HotelroomApi.Core.Tests
+[xUnit.net 00:00:01.21]   Finished:    GiteApi.Core.Tests
+  HotelroomApi.Core.Tests test net10.0 succeeded (2,7s)
+  GiteApi.Core.Tests test net10.0 succeeded (2,8s)
+[xUnit.net 00:00:00.74]   Discovering: ReservationApi.Core.Tests
+[xUnit.net 00:00:00.79]   Discovered:  ReservationApi.Core.Tests
+[xUnit.net 00:00:00.83]   Starting:    ReservationApi.Core.Tests
+[xUnit.net 00:00:01.12]   Finished:    ReservationApi.Core.Tests
+  ReservationApi.Core.Tests test net10.0 succeeded (2,7s)
+
+Test summary: total: 25, failed: 0, succeeded: 25, skipped: 0, duration: 3,2s
+Build succeeded with 2 warning(s) in 9,4s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>cd ..
+
+C:\Users\B\Documents\GitHub\backenddevelopment>cd TestingUnit
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>dotnet clean
+
+Build succeeded in 1,3s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>dotnet test
+Restore complete (1,1s)
+  Domain net10.0 succeeded (0,3s) → C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Domain\bin\Debug\net10.0\Domain.dll
+  Domain net10.0 succeeded with 2 warning(s) (0,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\bin\Debug\net10.0\Domain.dll
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(106,17): warning CS8602: Dereference of a possibly null reference.
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(134,25): warning CS8604: Possible null reference argument for parameter 'item' in 'bool ICollection<GiteBed>.Remove(GiteBed item)'.
+  Application net10.0 succeeded (0,3s) → C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Application\bin\Debug\net10.0\Application.dll
+  Domain net10.0 succeeded (0,3s) → C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Domain\bin\Debug\net10.0\Domain.dll
+  Application net10.0 succeeded (0,4s) → C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Application\bin\Debug\net10.0\Application.dll
+  HotelroomApi.Core.Tests net10.0 succeeded (0,6s) → HotelroomApi.Core.Tests\bin\Debug\net10.0\HotelroomApi.Core.Tests.dll
+  GiteApi.Core.Tests net10.0 succeeded (0,5s) → GiteApi.Core.Tests\bin\Debug\net10.0\GiteApi.Core.Tests.dll
+  Application net10.0 succeeded (1,1s) → C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Application\bin\Debug\net10.0\Application.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+  ReservationApi.Core.Tests net10.0 succeeded (0,9s) → ReservationApi.Core.Tests\bin\Debug\net10.0\ReservationApi.Core.Tests.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.64]   Discovering: HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.70]   Discovered:  HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.73]   Starting:    HotelroomApi.Core.Tests
+[xUnit.net 00:00:01.03]   Finished:    HotelroomApi.Core.Tests
+[xUnit.net 00:00:00.76]   Discovering: GiteApi.Core.Tests
+[xUnit.net 00:00:00.81]   Discovered:  GiteApi.Core.Tests
+  HotelroomApi.Core.Tests test net10.0 succeeded (2,7s)
+[xUnit.net 00:00:00.85]   Starting:    GiteApi.Core.Tests
+[xUnit.net 00:00:01.13]   Finished:    GiteApi.Core.Tests
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+  GiteApi.Core.Tests test net10.0 succeeded (2,8s)
+[xUnit.net 00:00:00.70]   Discovering: ReservationApi.Core.Tests
+[xUnit.net 00:00:00.75]   Discovered:  ReservationApi.Core.Tests
+[xUnit.net 00:00:00.79]   Starting:    ReservationApi.Core.Tests
+[xUnit.net 00:00:01.08]   Finished:    ReservationApi.Core.Tests
+  ReservationApi.Core.Tests test net10.0 succeeded (2,6s)
+
+Test summary: total: 25, failed: 0, succeeded: 25, skipped: 0, duration: 4,7s
+Build succeeded with 2 warning(s) in 7,8s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\TestingUnit>cd ..
+
+C:\Users\B\Documents\GitHub\backenddevelopment>cd GiteApi
+
+C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi>dotnet clean
+
+Build succeeded in 0,8s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi>dotnet test
+Restore complete (1,1s)
+  Domain net10.0 succeeded with 2 warning(s) (0,3s) → src\Domain\bin\Debug\net10.0\Domain.dll
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(106,17): warning CS8602: Dereference of a possibly null reference.
+    C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Domain\Invariants\Gite.cs(134,25): warning CS8604: Possible null reference argument for parameter 'item' in 'bool ICollection<GiteBed>.Remove(GiteBed item)'.
+  Application net10.0 succeeded (0,3s) → src\Application\bin\Debug\net10.0\Application.dll
+  Infrastructure net10.0 succeeded (0,8s) → src\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+  Api net10.0 succeeded (2,5s) → src\Api\bin\Debug\net10.0\Api.dll
+  IntegrationTesting net10.0 succeeded (1,1s) → src\IntegrationTesting\bin\Debug\net10.0\IntegrationTesting.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.58]   Discovering: IntegrationTesting
+[xUnit.net 00:00:00.64]   Discovered:  IntegrationTesting
+[xUnit.net 00:00:00.66]   Starting:    IntegrationTesting
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Testing
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi\src\Api
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (195ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      CREATE DATABASE [test_gitedb];
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (65ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      IF SERVERPROPERTY('EngineEdition') <> 5
+      BEGIN
+          ALTER DATABASE [test_gitedb] SET READ_COMMITTED_SNAPSHOT ON;
+      END;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Migrations[20411]
+      Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DECLARE @result int;
+      EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+      SELECT @result
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+      BEGIN
+          CREATE TABLE [__EFMigrationsHistory] (
+              [MigrationId] nvarchar(150) NOT NULL,
+              [ProductVersion] nvarchar(32) NOT NULL,
+              CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+          );
+      END;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [MigrationId], [ProductVersion]
+      FROM [__EFMigrationsHistory]
+      ORDER BY [MigrationId];
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20260113191017_InitialMigration'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblGite] (
+          [giteId] int NOT NULL IDENTITY,
+          [giteNumber] int NOT NULL,
+          [gitePrice] decimal(5,2) NOT NULL,
+          [isAvailable] bit NOT NULL,
+          [giteAddress] char(100) NOT NULL,
+          [capacityMin] int NOT NULL,
+          [capacityMax] int NOT NULL,
+          CONSTRAINT [PK_tblGite] PRIMARY KEY ([giteId])
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblGiteAmenities] (
+          [giteId] int NOT NULL,
+          [wifi] bit NULL,
+          [bath] bit NULL,
+          [shower] bit NULL,
+          [hairDryer] bit NULL,
+          [smallChild] bit NULL,
+          [toiletries] bit NULL,
+          [desk] bit NULL,
+          [chair] bit NULL,
+          [balcony] bit NULL,
+          [sofa] bit NULL,
+          [sofaBed] bit NULL,
+          [miniFridge] bit NULL,
+          [kettle] bit NULL,
+          [cuttlery] bit NULL,
+          [eatingArea] bit NULL,
+          [roomService] bit NULL,
+          CONSTRAINT [PK_tblGiteAmenities] PRIMARY KEY ([giteId]),
+          CONSTRAINT [FK_tblGiteAmenities_tblGite_giteId] FOREIGN KEY ([giteId]) REFERENCES [tblGite] ([giteId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblGiteBed] (
+          [giteBedId] int NOT NULL IDENTITY,
+          [giteId] int NOT NULL,
+          [amount1PrBed] int NOT NULL,
+          [amount2PrBed] int NOT NULL,
+          [amount3PrBed] int NOT NULL,
+          [bedSort] text NOT NULL,
+          CONSTRAINT [PK_tblGiteBed] PRIMARY KEY ([giteBedId]),
+          CONSTRAINT [FK_tblGiteBed_tblGite_giteId] FOREIGN KEY ([giteId]) REFERENCES [tblGite] ([giteId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX [IX_tblGite_giteNumber] ON [tblGite] ([giteNumber]);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX [IX_tblGiteBed_giteId] ON [tblGiteBed] ([giteId]);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N'20260113191017_InitialMigration', N'10.0.2');
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20260113192608_InitialMigrationAttempt2'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N'20260113192608_InitialMigrationAttempt2', N'10.0.2');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DECLARE @result int;
+      EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+      SELECT @result
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (19ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 100) (DbType = AnsiString), @p3='?' (DbType = Int32), @p4='?' (Precision = 5) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [tblGite] ([capacityMax], [capacityMin], [giteAddress], [giteNumber], [gitePrice], [isAvailable])
+      OUTPUT INSERTED.[giteId]
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p6='?' (DbType = Int32), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = Boolean), @p10='?' (DbType = Boolean), @p11='?' (DbType = Boolean), @p12='?' (DbType = Boolean), @p13='?' (DbType = Boolean), @p14='?' (DbType = Boolean), @p15='?' (DbType = Boolean), @p16='?' (DbType = Boolean), @p17='?' (DbType = Boolean), @p18='?' (DbType = Boolean), @p19='?' (DbType = Boolean), @p20='?' (DbType = Boolean), @p21='?' (DbType = Boolean), @p22='?' (DbType = Boolean), @p23='?' (DbType = Int32), @p24='?' (DbType = Int32), @p25='?' (DbType = Int32), @p26='?' (Size = 8000) (DbType = AnsiString), @p27='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [tblGiteAmenities] ([giteId], [balcony], [bath], [chair], [cuttlery], [desk], [eatingArea], [hairDryer], [kettle], [miniFridge], [roomService], [shower], [smallChild], [sofa], [sofaBed], [toiletries], [wifi])
+      VALUES (@p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22);
+      INSERT INTO [tblGiteBed] ([amount1PrBed], [amount2PrBed], [amount3PrBed], [bedSort], [giteId])
+      OUTPUT INSERTED.[giteBedId]
+      VALUES (@p23, @p24, @p25, @p26, @p27);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@id='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[giteId], [s].[capacityMax], [s].[capacityMin], [s].[giteAddress], [s].[giteNumber], [s].[gitePrice], [s].[isAvailable], [s].[giteId0], [s].[balcony], [s].[bath], [s].[chair], [s].[cuttlery], [s].[desk], [s].[eatingArea], [s].[hairDryer], [s].[kettle], [s].[miniFridge], [s].[roomService], [s].[shower], [s].[smallChild], [s].[sofa], [s].[sofaBed], [s].[toiletries], [s].[wifi], [t1].[giteBedId], [t1].[amount1PrBed], [t1].[amount2PrBed], [t1].[amount3PrBed], [t1].[bedSort], [t1].[giteId]
+      FROM (
+          SELECT TOP(1) [t].[giteId], [t].[capacityMax], [t].[capacityMin], [t].[giteAddress], [t].[giteNumber], [t].[gitePrice], [t].[isAvailable], [t0].[giteId] AS [giteId0], [t0].[balcony], [t0].[bath], [t0].[chair], [t0].[cuttlery], [t0].[desk], [t0].[eatingArea], [t0].[hairDryer], [t0].[kettle], [t0].[miniFridge], [t0].[roomService], [t0].[shower], [t0].[smallChild], [t0].[sofa], [t0].[sofaBed], [t0].[toiletries], [t0].[wifi]
+          FROM [tblGite] AS [t]
+          LEFT JOIN [tblGiteAmenities] AS [t0] ON [t].[giteId] = [t0].[giteId]
+          WHERE [t].[giteId] = @id
+      ) AS [s]
+      LEFT JOIN [tblGiteBed] AS [t1] ON [s].[giteId] = [t1].[giteId]
+      ORDER BY [s].[giteId], [s].[giteId0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[giteId], [t].[capacityMax], [t].[capacityMin], [t].[giteAddress], [t].[giteNumber], [t].[gitePrice], [t].[isAvailable]
+      FROM [tblGite] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@id='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[giteId], [s].[capacityMax], [s].[capacityMin], [s].[giteAddress], [s].[giteNumber], [s].[gitePrice], [s].[isAvailable], [s].[giteId0], [s].[balcony], [s].[bath], [s].[chair], [s].[cuttlery], [s].[desk], [s].[eatingArea], [s].[hairDryer], [s].[kettle], [s].[miniFridge], [s].[roomService], [s].[shower], [s].[smallChild], [s].[sofa], [s].[sofaBed], [s].[toiletries], [s].[wifi], [t1].[giteBedId], [t1].[amount1PrBed], [t1].[amount2PrBed], [t1].[amount3PrBed], [t1].[bedSort], [t1].[giteId]
+      FROM (
+          SELECT TOP(1) [t].[giteId], [t].[capacityMax], [t].[capacityMin], [t].[giteAddress], [t].[giteNumber], [t].[gitePrice], [t].[isAvailable], [t0].[giteId] AS [giteId0], [t0].[balcony], [t0].[bath], [t0].[chair], [t0].[cuttlery], [t0].[desk], [t0].[eatingArea], [t0].[hairDryer], [t0].[kettle], [t0].[miniFridge], [t0].[roomService], [t0].[shower], [t0].[smallChild], [t0].[sofa], [t0].[sofaBed], [t0].[toiletries], [t0].[wifi]
+          FROM [tblGite] AS [t]
+          LEFT JOIN [tblGiteAmenities] AS [t0] ON [t].[giteId] = [t0].[giteId]
+          WHERE [t].[giteId] = @id
+      ) AS [s]
+      LEFT JOIN [tblGiteBed] AS [t1] ON [s].[giteId] = [t1].[giteId]
+      ORDER BY [s].[giteId], [s].[giteId0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[@p6='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 100) (DbType = AnsiString), @p3='?' (DbType = Int32), @p4='?' (Precision = 5) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Boolean), @p14='?' (DbType = Int32), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = Boolean), @p10='?' (DbType = Boolean), @p11='?' (DbType = Boolean), @p12='?' (DbType = Boolean), @p13='?' (DbType = Boolean), @p15='?' (DbType = Int32), @p16='?' (DbType = Int32), @p17='?' (DbType = Int32), @p18='?' (DbType = Int32), @p19='?' (Size = 8000) (DbType = AnsiString), @p20='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [tblGite] SET [capacityMax] = @p0, [capacityMin] = @p1, [giteAddress] = @p2, [giteNumber] = @p3, [gitePrice] = @p4, [isAvailable] = @p5
+      OUTPUT 1
+      WHERE [giteId] = @p6;
+      UPDATE [tblGiteAmenities] SET [balcony] = @p7, [bath] = @p8, [desk] = @p9, [hairDryer] = @p10, [roomService] = @p11, [smallChild] = @p12, [sofaBed] = @p13
+      OUTPUT 1
+      WHERE [giteId] = @p14;
+      DELETE FROM [tblGiteBed]
+      OUTPUT 1
+      WHERE [giteBedId] = @p15;
+      INSERT INTO [tblGiteBed] ([amount1PrBed], [amount2PrBed], [amount3PrBed], [bedSort], [giteId])
+      OUTPUT INSERTED.[giteBedId]
+      VALUES (@p16, @p17, @p18, @p19, @p20);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@id='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[giteId], [s].[capacityMax], [s].[capacityMin], [s].[giteAddress], [s].[giteNumber], [s].[gitePrice], [s].[isAvailable], [s].[giteId0], [s].[balcony], [s].[bath], [s].[chair], [s].[cuttlery], [s].[desk], [s].[eatingArea], [s].[hairDryer], [s].[kettle], [s].[miniFridge], [s].[roomService], [s].[shower], [s].[smallChild], [s].[sofa], [s].[sofaBed], [s].[toiletries], [s].[wifi], [t1].[giteBedId], [t1].[amount1PrBed], [t1].[amount2PrBed], [t1].[amount3PrBed], [t1].[bedSort], [t1].[giteId]
+      FROM (
+          SELECT TOP(1) [t].[giteId], [t].[capacityMax], [t].[capacityMin], [t].[giteAddress], [t].[giteNumber], [t].[gitePrice], [t].[isAvailable], [t0].[giteId] AS [giteId0], [t0].[balcony], [t0].[bath], [t0].[chair], [t0].[cuttlery], [t0].[desk], [t0].[eatingArea], [t0].[hairDryer], [t0].[kettle], [t0].[miniFridge], [t0].[roomService], [t0].[shower], [t0].[smallChild], [t0].[sofa], [t0].[sofaBed], [t0].[toiletries], [t0].[wifi]
+          FROM [tblGite] AS [t]
+          LEFT JOIN [tblGiteAmenities] AS [t0] ON [t].[giteId] = [t0].[giteId]
+          WHERE [t].[giteId] = @id
+      ) AS [s]
+      LEFT JOIN [tblGiteBed] AS [t1] ON [s].[giteId] = [t1].[giteId]
+      ORDER BY [s].[giteId], [s].[giteId0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      DELETE FROM [tblGiteAmenities]
+      OUTPUT 1
+      WHERE [giteId] = @p0;
+      DELETE FROM [tblGiteBed]
+      OUTPUT 1
+      WHERE [giteBedId] = @p1;
+      DELETE FROM [tblGite]
+      OUTPUT 1
+      WHERE [giteId] = @p2;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@id='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[giteId], [s].[capacityMax], [s].[capacityMin], [s].[giteAddress], [s].[giteNumber], [s].[gitePrice], [s].[isAvailable], [s].[giteId0], [s].[balcony], [s].[bath], [s].[chair], [s].[cuttlery], [s].[desk], [s].[eatingArea], [s].[hairDryer], [s].[kettle], [s].[miniFridge], [s].[roomService], [s].[shower], [s].[smallChild], [s].[sofa], [s].[sofaBed], [s].[toiletries], [s].[wifi], [t1].[giteBedId], [t1].[amount1PrBed], [t1].[amount2PrBed], [t1].[amount3PrBed], [t1].[bedSort], [t1].[giteId]
+      FROM (
+          SELECT TOP(1) [t].[giteId], [t].[capacityMax], [t].[capacityMin], [t].[giteAddress], [t].[giteNumber], [t].[gitePrice], [t].[isAvailable], [t0].[giteId] AS [giteId0], [t0].[balcony], [t0].[bath], [t0].[chair], [t0].[cuttlery], [t0].[desk], [t0].[eatingArea], [t0].[hairDryer], [t0].[kettle], [t0].[miniFridge], [t0].[roomService], [t0].[shower], [t0].[smallChild], [t0].[sofa], [t0].[sofaBed], [t0].[toiletries], [t0].[wifi]
+          FROM [tblGite] AS [t]
+          LEFT JOIN [tblGiteAmenities] AS [t0] ON [t].[giteId] = [t0].[giteId]
+          WHERE [t].[giteId] = @id
+      ) AS [s]
+      LEFT JOIN [tblGiteBed] AS [t1] ON [s].[giteId] = [t1].[giteId]
+      ORDER BY [s].[giteId], [s].[giteId0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      IF SERVERPROPERTY('EngineEdition') <> 5
+      BEGIN
+          ALTER DATABASE [test_gitedb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+      END;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (23ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      DROP DATABASE [test_gitedb];
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[xUnit.net 00:00:04.88]   Finished:    IntegrationTesting
+  IntegrationTesting test net10.0 succeeded (6,3s)
+
+Test summary: total: 1, failed: 0, succeeded: 1, skipped: 0, duration: 5,5s
+Build succeeded with 2 warning(s) in 11,2s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\GiteApi>

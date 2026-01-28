@@ -1,0 +1,309 @@
+C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi>dotnet clean
+
+Build succeeded in 1,1s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi>dotnet test
+Restore complete (1,0s)
+  Domain net10.0 succeeded (0,3s) → src\Domain\bin\Debug\net10.0\Domain.dll
+  Application net10.0 succeeded (0,6s) → src\Application\bin\Debug\net10.0\Application.dll
+  Infrastructure net10.0 succeeded (0,8s) → src\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+  Api net10.0 succeeded (2,0s) → src\Api\bin\Debug\net10.0\Api.dll
+  IntegrationTesting net10.0 succeeded (1,2s) → src\IntegrationTesting\bin\Debug\net10.0\IntegrationTesting.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.72]   Discovering: IntegrationTesting
+[xUnit.net 00:00:00.77]   Discovered:  IntegrationTesting
+[xUnit.net 00:00:00.80]   Starting:    IntegrationTesting
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Testing
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi\src\Api
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Migrations[20411]
+      Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DECLARE @result int;
+      EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+      SELECT @result
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+      BEGIN
+          CREATE TABLE [__EFMigrationsHistory] (
+              [MigrationId] nvarchar(150) NOT NULL,
+              [ProductVersion] nvarchar(32) NOT NULL,
+              CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+          );
+      END;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [MigrationId], [ProductVersion]
+      FROM [__EFMigrationsHistory]
+      ORDER BY [MigrationId];
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20260125220225_Migration1'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservation] (
+          [reservationId] int NOT NULL IDENTITY,
+          [accountId] int NOT NULL,
+          [reservationStatus] text NOT NULL,
+          [paymentStatus] text NOT NULL,
+          [reservationPrice] decimal(6,2) NOT NULL,
+          [discount] decimal(3,2) NOT NULL,
+          [touristTarif] decimal(3,2) NOT NULL,
+          [reservationStart] datetime2 NOT NULL,
+          [reservationEnd] datetime2 NOT NULL,
+          CONSTRAINT [PK_tblReservation] PRIMARY KEY ([reservationId])
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservationCamping] (
+          [reservationId] int NOT NULL,
+          [campingId] int NOT NULL,
+          [campingDiscount] decimal(3,2) NOT NULL,
+          CONSTRAINT [PK_tblReservationCamping] PRIMARY KEY ([reservationId], [campingId]),
+          CONSTRAINT [FK_tblReservationCamping_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservationClient] (
+          [reservationId] int NOT NULL,
+          [firstName] char(50) NOT NULL,
+          [lastName] char(50) NOT NULL,
+          [birthDate] date NOT NULL,
+          CONSTRAINT [PK_tblReservationClient] PRIMARY KEY ([reservationId], [firstName], [lastName]),
+          CONSTRAINT [FK_tblReservationClient_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservationFacility] (
+          [reservationId] int NOT NULL,
+          [facility] char(50) NOT NULL,
+          [facilityDiscount] decimal(3,2) NOT NULL,
+          CONSTRAINT [PK_tblReservationFacility] PRIMARY KEY ([reservationId], [facility]),
+          CONSTRAINT [FK_tblReservationFacility_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservationGite] (
+          [reservationId] int NOT NULL,
+          [giteId] int NOT NULL,
+          [giteDiscount] decimal(3,2) NOT NULL,
+          CONSTRAINT [PK_tblReservationGite] PRIMARY KEY ([reservationId], [giteId]),
+          CONSTRAINT [FK_tblReservationGite_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservationHotelroom] (
+          [reservationId] int NOT NULL,
+          [roomId] int NOT NULL,
+          [hotelroomDiscount] decimal(3,2) NOT NULL,
+          CONSTRAINT [PK_tblReservationHotelroom] PRIMARY KEY ([reservationId], [roomId]),
+          CONSTRAINT [FK_tblReservationHotelroom_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblReservationRestaurant] (
+          [reservationRestaurantId] int NOT NULL IDENTITY,
+          [reservationId] int NOT NULL,
+          [tableId] int NOT NULL,
+          [tableReservationStart] datetime2 NOT NULL,
+          [tableReservationEnd] datetime2 NOT NULL,
+          [tableBill] decimal(5,2) NOT NULL,
+          [tableDiscount] decimal(3,2) NOT NULL,
+          CONSTRAINT [PK_tblReservationRestaurant] PRIMARY KEY ([reservationRestaurantId]),
+          CONSTRAINT [FK_tblReservationRestaurant_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [tblVehicle] (
+          [reservationId] int NOT NULL,
+          [registrationPlate] char(50) NOT NULL,
+          CONSTRAINT [PK_tblVehicle] PRIMARY KEY ([reservationId], [registrationPlate]),
+          CONSTRAINT [FK_tblVehicle_tblReservation_reservationId] FOREIGN KEY ([reservationId]) REFERENCES [tblReservation] ([reservationId]) ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX [IX_tblReservationRestaurant_reservationId] ON [tblReservationRestaurant] ([reservationId]);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N'20260125220225_Migration1', N'10.0.2');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DECLARE @result int;
+      EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+      SELECT @result
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (22ms) [Parameters=[@giteId='?' (DbType = Int32), @start='?' (DbType = DateTime2), @end='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [tblReservationGite] AS [t]
+              INNER JOIN [tblReservation] AS [t0] ON [t].[reservationId] = [t0].[reservationId]
+              WHERE [t].[giteId] = @giteId AND @start < [t0].[reservationEnd] AND @end > [t0].[reservationStart]) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Precision = 3) (Scale = 2) (DbType = Decimal), @p2='?' (Size = 8000) (DbType = AnsiString), @p3='?' (DbType = DateTime2), @p4='?' (Precision = 6) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = DateTime2), @p6='?' (Size = 8000) (DbType = AnsiString), @p7='?' (Precision = 3) (Scale = 2) (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [tblReservation] ([accountId], [discount], [paymentStatus], [reservationEnd], [reservationPrice], [reservationStart], [reservationStatus], [touristTarif])
+      OUTPUT INSERTED.[reservationId]
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p8='?' (Size = 50) (DbType = AnsiString), @p9='?' (Size = 50) (DbType = AnsiString), @p10='?' (DbType = Int32), @p11='?' (DbType = Date), @p12='?' (DbType = Int32), @p13='?' (DbType = Int32), @p14='?' (Precision = 3) (Scale = 2) (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [tblReservationClient] ([firstName], [lastName], [reservationId], [birthDate])
+      VALUES (@p8, @p9, @p10, @p11);
+      INSERT INTO [tblReservationGite] ([giteId], [reservationId], [giteDiscount])
+      VALUES (@p12, @p13, @p14);
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t0].[birthDate], [t1].[reservationId], [t1].[giteId], [t1].[giteDiscount], [t2].[reservationId], [t2].[roomId], [t2].[hotelroomDiscount], [t3].[reservationId], [t3].[campingId], [t3].[campingDiscount], [t4].[reservationId], [t4].[facility], [t4].[facilityDiscount], [t5].[reservationId], [t5].[registrationPlate], [t6].[reservationRestaurantId], [t6].[reservationId], [t6].[tableBill], [t6].[tableDiscount], [t6].[tableId], [t6].[tableReservationEnd], [t6].[tableReservationStart]
+      FROM [tblReservation] AS [t]
+      LEFT JOIN [tblReservationClient] AS [t0] ON [t].[reservationId] = [t0].[reservationId]
+      LEFT JOIN [tblReservationGite] AS [t1] ON [t].[reservationId] = [t1].[reservationId]
+      LEFT JOIN [tblReservationHotelroom] AS [t2] ON [t].[reservationId] = [t2].[reservationId]
+      LEFT JOIN [tblReservationCamping] AS [t3] ON [t].[reservationId] = [t3].[reservationId]
+      LEFT JOIN [tblReservationFacility] AS [t4] ON [t].[reservationId] = [t4].[reservationId]
+      LEFT JOIN [tblVehicle] AS [t5] ON [t].[reservationId] = [t5].[reservationId]
+      LEFT JOIN [tblReservationRestaurant] AS [t6] ON [t].[reservationId] = [t6].[reservationId]
+      ORDER BY [t].[reservationId], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t1].[reservationId], [t1].[giteId], [t2].[reservationId], [t2].[roomId], [t3].[reservationId], [t3].[campingId], [t4].[reservationId], [t4].[facility], [t5].[reservationId], [t5].[registrationPlate]
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@reservationId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t7].[reservationId], [t7].[accountId], [t7].[discount], [t7].[paymentStatus], [t7].[reservationEnd], [t7].[reservationPrice], [t7].[reservationStart], [t7].[reservationStatus], [t7].[touristTarif], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t0].[birthDate], [t1].[reservationId], [t1].[giteId], [t1].[giteDiscount], [t2].[reservationId], [t2].[roomId], [t2].[hotelroomDiscount], [t3].[reservationId], [t3].[campingId], [t3].[campingDiscount], [t4].[reservationId], [t4].[facility], [t4].[facilityDiscount], [t5].[reservationId], [t5].[registrationPlate], [t6].[reservationRestaurantId], [t6].[reservationId], [t6].[tableBill], [t6].[tableDiscount], [t6].[tableId], [t6].[tableReservationEnd], [t6].[tableReservationStart]
+      FROM (
+          SELECT TOP(1) [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif]
+          FROM [tblReservation] AS [t]
+          WHERE [t].[reservationId] = @reservationId
+      ) AS [t7]
+      LEFT JOIN [tblReservationClient] AS [t0] ON [t7].[reservationId] = [t0].[reservationId]
+      LEFT JOIN [tblReservationGite] AS [t1] ON [t7].[reservationId] = [t1].[reservationId]
+      LEFT JOIN [tblReservationHotelroom] AS [t2] ON [t7].[reservationId] = [t2].[reservationId]
+      LEFT JOIN [tblReservationCamping] AS [t3] ON [t7].[reservationId] = [t3].[reservationId]
+      LEFT JOIN [tblReservationFacility] AS [t4] ON [t7].[reservationId] = [t4].[reservationId]
+      LEFT JOIN [tblVehicle] AS [t5] ON [t7].[reservationId] = [t5].[reservationId]
+      LEFT JOIN [tblReservationRestaurant] AS [t6] ON [t7].[reservationId] = [t6].[reservationId]
+      ORDER BY [t7].[reservationId], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t1].[reservationId], [t1].[giteId], [t2].[reservationId], [t2].[roomId], [t3].[reservationId], [t3].[campingId], [t4].[reservationId], [t4].[facility], [t5].[reservationId], [t5].[registrationPlate]
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@reservationId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t7].[reservationId], [t7].[accountId], [t7].[discount], [t7].[paymentStatus], [t7].[reservationEnd], [t7].[reservationPrice], [t7].[reservationStart], [t7].[reservationStatus], [t7].[touristTarif], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t0].[birthDate], [t1].[reservationId], [t1].[giteId], [t1].[giteDiscount], [t2].[reservationId], [t2].[roomId], [t2].[hotelroomDiscount], [t3].[reservationId], [t3].[campingId], [t3].[campingDiscount], [t4].[reservationId], [t4].[facility], [t4].[facilityDiscount], [t5].[reservationId], [t5].[registrationPlate], [t6].[reservationRestaurantId], [t6].[reservationId], [t6].[tableBill], [t6].[tableDiscount], [t6].[tableId], [t6].[tableReservationEnd], [t6].[tableReservationStart]
+      FROM (
+          SELECT TOP(1) [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif]
+          FROM [tblReservation] AS [t]
+          WHERE [t].[reservationId] = @reservationId
+      ) AS [t7]
+      LEFT JOIN [tblReservationClient] AS [t0] ON [t7].[reservationId] = [t0].[reservationId]
+      LEFT JOIN [tblReservationGite] AS [t1] ON [t7].[reservationId] = [t1].[reservationId]
+      LEFT JOIN [tblReservationHotelroom] AS [t2] ON [t7].[reservationId] = [t2].[reservationId]
+      LEFT JOIN [tblReservationCamping] AS [t3] ON [t7].[reservationId] = [t3].[reservationId]
+      LEFT JOIN [tblReservationFacility] AS [t4] ON [t7].[reservationId] = [t4].[reservationId]
+      LEFT JOIN [tblVehicle] AS [t5] ON [t7].[reservationId] = [t5].[reservationId]
+      LEFT JOIN [tblReservationRestaurant] AS [t6] ON [t7].[reservationId] = [t6].[reservationId]
+      ORDER BY [t7].[reservationId], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t1].[reservationId], [t1].[giteId], [t2].[reservationId], [t2].[roomId], [t3].[reservationId], [t3].[campingId], [t4].[reservationId], [t4].[facility], [t5].[reservationId], [t5].[registrationPlate]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[@giteId='?' (DbType = Int32), @start='?' (DbType = DateTime2), @end='?' (DbType = DateTime2), @excludeReservationId_Value='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [tblReservationGite] AS [t]
+              INNER JOIN [tblReservation] AS [t0] ON [t].[reservationId] = [t0].[reservationId]
+              WHERE [t].[giteId] = @giteId AND @start < [t0].[reservationEnd] AND @end > [t0].[reservationStart] AND [t0].[reservationId] <> @excludeReservationId_Value) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Precision = 3) (Scale = 2) (DbType = Decimal), @p2='?' (Size = 8000) (DbType = AnsiString), @p3='?' (DbType = DateTime2), @p4='?' (Precision = 6) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = DateTime2), @p6='?' (Size = 8000) (DbType = AnsiString), @p7='?' (Precision = 3) (Scale = 2) (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [tblReservation] SET [accountId] = @p0, [discount] = @p1, [paymentStatus] = @p2, [reservationEnd] = @p3, [reservationPrice] = @p4, [reservationStart] = @p5, [reservationStatus] = @p6, [touristTarif] = @p7
+      OUTPUT 1
+      WHERE [reservationId] = @p8;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@reservationId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t7].[reservationId], [t7].[accountId], [t7].[discount], [t7].[paymentStatus], [t7].[reservationEnd], [t7].[reservationPrice], [t7].[reservationStart], [t7].[reservationStatus], [t7].[touristTarif], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t0].[birthDate], [t1].[reservationId], [t1].[giteId], [t1].[giteDiscount], [t2].[reservationId], [t2].[roomId], [t2].[hotelroomDiscount], [t3].[reservationId], [t3].[campingId], [t3].[campingDiscount], [t4].[reservationId], [t4].[facility], [t4].[facilityDiscount], [t5].[reservationId], [t5].[registrationPlate], [t6].[reservationRestaurantId], [t6].[reservationId], [t6].[tableBill], [t6].[tableDiscount], [t6].[tableId], [t6].[tableReservationEnd], [t6].[tableReservationStart]
+      FROM (
+          SELECT TOP(1) [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif]
+          FROM [tblReservation] AS [t]
+          WHERE [t].[reservationId] = @reservationId
+      ) AS [t7]
+      LEFT JOIN [tblReservationClient] AS [t0] ON [t7].[reservationId] = [t0].[reservationId]
+      LEFT JOIN [tblReservationGite] AS [t1] ON [t7].[reservationId] = [t1].[reservationId]
+      LEFT JOIN [tblReservationHotelroom] AS [t2] ON [t7].[reservationId] = [t2].[reservationId]
+      LEFT JOIN [tblReservationCamping] AS [t3] ON [t7].[reservationId] = [t3].[reservationId]
+      LEFT JOIN [tblReservationFacility] AS [t4] ON [t7].[reservationId] = [t4].[reservationId]
+      LEFT JOIN [tblVehicle] AS [t5] ON [t7].[reservationId] = [t5].[reservationId]
+      LEFT JOIN [tblReservationRestaurant] AS [t6] ON [t7].[reservationId] = [t6].[reservationId]
+      ORDER BY [t7].[reservationId], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t1].[reservationId], [t1].[giteId], [t2].[reservationId], [t2].[roomId], [t3].[reservationId], [t3].[campingId], [t4].[reservationId], [t4].[facility], [t5].[reservationId], [t5].[registrationPlate]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@reservationId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t7].[reservationId], [t7].[accountId], [t7].[discount], [t7].[paymentStatus], [t7].[reservationEnd], [t7].[reservationPrice], [t7].[reservationStart], [t7].[reservationStatus], [t7].[touristTarif], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t0].[birthDate], [t1].[reservationId], [t1].[giteId], [t1].[giteDiscount], [t2].[reservationId], [t2].[roomId], [t2].[hotelroomDiscount], [t3].[reservationId], [t3].[campingId], [t3].[campingDiscount], [t4].[reservationId], [t4].[facility], [t4].[facilityDiscount], [t5].[reservationId], [t5].[registrationPlate], [t6].[reservationRestaurantId], [t6].[reservationId], [t6].[tableBill], [t6].[tableDiscount], [t6].[tableId], [t6].[tableReservationEnd], [t6].[tableReservationStart]
+      FROM (
+          SELECT TOP(1) [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif]
+          FROM [tblReservation] AS [t]
+          WHERE [t].[reservationId] = @reservationId
+      ) AS [t7]
+      LEFT JOIN [tblReservationClient] AS [t0] ON [t7].[reservationId] = [t0].[reservationId]
+      LEFT JOIN [tblReservationGite] AS [t1] ON [t7].[reservationId] = [t1].[reservationId]
+      LEFT JOIN [tblReservationHotelroom] AS [t2] ON [t7].[reservationId] = [t2].[reservationId]
+      LEFT JOIN [tblReservationCamping] AS [t3] ON [t7].[reservationId] = [t3].[reservationId]
+      LEFT JOIN [tblReservationFacility] AS [t4] ON [t7].[reservationId] = [t4].[reservationId]
+      LEFT JOIN [tblVehicle] AS [t5] ON [t7].[reservationId] = [t5].[reservationId]
+      LEFT JOIN [tblReservationRestaurant] AS [t6] ON [t7].[reservationId] = [t6].[reservationId]
+      ORDER BY [t7].[reservationId], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t1].[reservationId], [t1].[giteId], [t2].[reservationId], [t2].[roomId], [t3].[reservationId], [t3].[campingId], [t4].[reservationId], [t4].[facility], [t5].[reservationId], [t5].[registrationPlate]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@reservationId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif]
+      FROM [tblReservation] AS [t]
+      WHERE [t].[reservationId] = @reservationId
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      DELETE FROM [tblReservation]
+      OUTPUT 1
+      WHERE [reservationId] = @p0;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@reservationId='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t7].[reservationId], [t7].[accountId], [t7].[discount], [t7].[paymentStatus], [t7].[reservationEnd], [t7].[reservationPrice], [t7].[reservationStart], [t7].[reservationStatus], [t7].[touristTarif], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t0].[birthDate], [t1].[reservationId], [t1].[giteId], [t1].[giteDiscount], [t2].[reservationId], [t2].[roomId], [t2].[hotelroomDiscount], [t3].[reservationId], [t3].[campingId], [t3].[campingDiscount], [t4].[reservationId], [t4].[facility], [t4].[facilityDiscount], [t5].[reservationId], [t5].[registrationPlate], [t6].[reservationRestaurantId], [t6].[reservationId], [t6].[tableBill], [t6].[tableDiscount], [t6].[tableId], [t6].[tableReservationEnd], [t6].[tableReservationStart]
+      FROM (
+          SELECT TOP(1) [t].[reservationId], [t].[accountId], [t].[discount], [t].[paymentStatus], [t].[reservationEnd], [t].[reservationPrice], [t].[reservationStart], [t].[reservationStatus], [t].[touristTarif]
+          FROM [tblReservation] AS [t]
+          WHERE [t].[reservationId] = @reservationId
+      ) AS [t7]
+      LEFT JOIN [tblReservationClient] AS [t0] ON [t7].[reservationId] = [t0].[reservationId]
+      LEFT JOIN [tblReservationGite] AS [t1] ON [t7].[reservationId] = [t1].[reservationId]
+      LEFT JOIN [tblReservationHotelroom] AS [t2] ON [t7].[reservationId] = [t2].[reservationId]
+      LEFT JOIN [tblReservationCamping] AS [t3] ON [t7].[reservationId] = [t3].[reservationId]
+      LEFT JOIN [tblReservationFacility] AS [t4] ON [t7].[reservationId] = [t4].[reservationId]
+      LEFT JOIN [tblVehicle] AS [t5] ON [t7].[reservationId] = [t5].[reservationId]
+      LEFT JOIN [tblReservationRestaurant] AS [t6] ON [t7].[reservationId] = [t6].[reservationId]
+      ORDER BY [t7].[reservationId], [t0].[reservationId], [t0].[firstName], [t0].[lastName], [t1].[reservationId], [t1].[giteId], [t2].[reservationId], [t2].[roomId], [t3].[reservationId], [t3].[campingId], [t4].[reservationId], [t4].[facility], [t5].[reservationId], [t5].[registrationPlate]
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[xUnit.net 00:00:08.39]   Finished:    IntegrationTesting
+  IntegrationTesting test net10.0 succeeded (10,0s)
+
+Test summary: total: 1, failed: 0, succeeded: 1, skipped: 0, duration: 9,6s
+Build succeeded in 15,2s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\ReservationApi>

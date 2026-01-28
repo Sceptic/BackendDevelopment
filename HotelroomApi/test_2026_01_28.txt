@@ -1,0 +1,34 @@
+C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi>dotnet clean
+
+Build succeeded in 1,3s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi>dotnet test
+Restore succeeded with 1 warning(s) in 1,1s
+    C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Api\Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.DependencyInjection will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+  Domain net10.0 succeeded (0,4s) → src\Domain\bin\Debug\net10.0\Domain.dll
+  Application net10.0 succeeded (0,4s) → src\Application\bin\Debug\net10.0\Application.dll
+  Infrastructure net10.0 succeeded (0,7s) → src\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+  Api net10.0 succeeded with 1 warning(s) (1,8s) → src\Api\bin\Debug\net10.0\Api.dll
+    C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Api\Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.DependencyInjection will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+  IntegrationTesting net10.0 succeeded (1,2s) → src\IntegrationTesting\bin\Debug\net10.0\IntegrationTesting.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.2)
+[xUnit.net 00:00:00.64]   Discovering: IntegrationTesting
+[xUnit.net 00:00:00.70]   Discovered:  IntegrationTesting
+[xUnit.net 00:00:00.73]   Starting:    IntegrationTesting
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Testing
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi\src\Api
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[xUnit.net 00:00:05.11]   Finished:    IntegrationTesting
+  IntegrationTesting test net10.0 succeeded (6,7s)
+
+Test summary: total: 1, failed: 0, succeeded: 1, skipped: 0, duration: 6,5s
+Build succeeded with 2 warning(s) in 12,6s
+
+C:\Users\B\Documents\GitHub\backenddevelopment\HotelroomApi>
