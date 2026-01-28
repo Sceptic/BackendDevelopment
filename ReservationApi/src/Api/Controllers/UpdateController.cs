@@ -24,6 +24,6 @@ public sealed class UpdateReservationController : ControllerBase
         var updated = await _commands.PatchAsync(request, ct);
         if (updated is null) return NotFound();
 
-        return Ok(updated);
+        return Ok(updated.ReservationId);
     }
 }

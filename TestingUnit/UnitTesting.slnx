@@ -1,8 +1,6 @@
 <Solution>
   <Project Path="HotelroomApi.Core.Tests/HotelroomApi.Core.Tests.csproj" />
   <Project Path="GiteApi.Core.Tests/GiteApi.Core.Tests.csproj" />
-  <Project Path="Wrapper.Api.IntegrationTests/Wrapper.Api.IntegrationTests.csproj" />
-  <Project Path="Wrapper.Core.Tests/Wrapper.Core.Tests.csproj" />
   <Project Path="ReservationApi.Core.Tests/ReservationApi.Core.Tests.csproj" />
 
 </Solution>

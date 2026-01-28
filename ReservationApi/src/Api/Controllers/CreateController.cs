@@ -21,7 +21,7 @@ public sealed class CreateReservationController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateReservationRequestDto request, CancellationToken ct)
     {
-        var id = await _commands.CreateAsync(request, ct);
-        return Created($"/reservation/get/{id}", null);
+        var reservation = await _commands.CreateAsync(request, ct);
+        return Created($"/reservation/get/{reservation.ReservationId}", null);
     }
 }
