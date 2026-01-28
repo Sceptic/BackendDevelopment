@@ -18,4 +18,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+	<ProjectReference Include="..\..\ReservationApi\src\Application\Application.csproj" />
+	<ProjectReference Include="..\..\ReservationApi\src\Domain\Domain.csproj" />
+  </ItemGroup>
+
 </Project>
